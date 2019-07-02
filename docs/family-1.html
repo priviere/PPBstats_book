@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.5 Family 1 of analysis : Compare different varieties evaluated for selection in different locations. | PPBstats : An R package for Participatory Plant Breeding statisticial analyses</title>
+  <meta name="description" content="Tutorial on how to use the R package PPBstats." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.5 Family 1 of analysis : Compare different varieties evaluated for selection in different locations. | PPBstats : An R package for Participatory Plant Breeding statisticial analyses" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Tutorial on how to use the R package PPBstats." />
+  <meta name="github-repo" content="priviere/PPBstats" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.5 Family 1 of analysis : Compare different varieties evaluated for selection in different locations. | PPBstats : An R package for Participatory Plant Breeding statisticial analyses" />
+  
+  <meta name="twitter:description" content="Tutorial on how to use the R package PPBstats." />
+  
+
+<meta name="author" content="Pierre Rivière" />
+
+
+<meta name="date" content="2019-07-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="describe-data-agro.html">
+<link rel="next" href="family-2.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://priviere.github.io/PPBstats_web_site/index.html" >PPBstats website</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="contact.html"><a href="contact.html"><i class="fa fa-check"></i>Contact</a></li>
+<li><a href="authors-and-contributors-of-ppbstats-and-the-book.html#authors-and-contributors-of-ppbstats-and-the-book">Authors and contributors of <code>PPBstats</code> and the book</a></li>
+<li class="chapter" data-level="" data-path="copyright-licence-citation.html"><a href="copyright-licence-citation.html"><i class="fa fa-check"></i>Copyright, Licence, citation</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="philo.html"><a href="philo.html"><i class="fa fa-check"></i><b>1</b> Philosophy of PPBstats</a><ul>
+<li class="chapter" data-level="1.1" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html"><i class="fa fa-check"></i><b>1.1</b> What is Participatory Plant Bredding ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html#decentralize-the-selection"><i class="fa fa-check"></i><b>1.1.1</b> Decentralize the selection</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-participatory-plant-bredding.html"><a href="what-is-participatory-plant-bredding.html#involve-all-actors-in-the-breeding-decision-process"><i class="fa fa-check"></i><b>1.1.2</b> Involve all actors in the breeding decision process</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="objectives-of-ppbstats.html"><a href="objectives-of-ppbstats.html"><i class="fa fa-check"></i><b>1.2</b> Objectives of <code>PPBstats</code></a></li>
+<li class="chapter" data-level="1.3" data-path="contribute.html"><a href="contribute.html"><i class="fa fa-check"></i><b>1.3</b> Contribute</a></li>
+<li class="chapter" data-level="1.4" data-path="design-and-statistical-methods-according-to-the-objectives.html"><a href="design-and-statistical-methods-according-to-the-objectives.html"><i class="fa fa-check"></i><b>1.4</b> Design and statistical methods according to the objectives</a></li>
+<li class="chapter" data-level="1.5" data-path="lets-go-install-ppbstats-and-the-data-used-in-the-book.html"><a href="lets-go-install-ppbstats-and-the-data-used-in-the-book.html"><i class="fa fa-check"></i><b>1.5</b> Let’s go: install <code>PPBstats</code> and the data used in the book!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>2</b> Analysis of network seed circulation (<strong>M8</strong>)</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="introduction.html"><a href="introduction.html#workflow-and-function-relations-in-ppbstats-regarding-network-analysis"><i class="fa fa-check"></i><b>2.1.1</b> Workflow and function relations in <code>PPBstats</code> regarding network analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html"><i class="fa fa-check"></i><b>2.2</b> Unipart network for seed lots analysis</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#steps-with-ppbstats"><i class="fa fa-check"></i><b>2.2.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#format-the-data"><i class="fa fa-check"></i><b>2.2.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.2.3" data-path="unipart-network-for-seed-lots-analysis.html"><a href="unipart-network-for-seed-lots-analysis.html#describe-the-data"><i class="fa fa-check"></i><b>2.2.3</b> Describe the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html"><i class="fa fa-check"></i><b>2.3</b> Unipart network for location analysis</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#steps-with-ppbstats-1"><i class="fa fa-check"></i><b>2.3.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-the-data-1"><i class="fa fa-check"></i><b>2.3.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.3.3" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-and-describe-the-data-for-each-germplasm"><i class="fa fa-check"></i><b>2.3.3</b> Format and describe the data for each germplasm</a></li>
+<li class="chapter" data-level="2.3.4" data-path="unipart-network-for-location-analysis.html"><a href="unipart-network-for-location-analysis.html#format-and-describe-the-data-for-each-year"><i class="fa fa-check"></i><b>2.3.4</b> Format and describe the data for each year</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html"><i class="fa fa-check"></i><b>2.4</b> Bipart network analysis</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#steps-with-ppbstats-2"><i class="fa fa-check"></i><b>2.4.1</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#format-the-data-2"><i class="fa fa-check"></i><b>2.4.2</b> Format the data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="bipart-network-analysis.html"><a href="bipart-network-analysis.html#describe-the-data-1"><i class="fa fa-check"></i><b>2.4.3</b> Describe the data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="agronomic.html"><a href="agronomic.html"><i class="fa fa-check"></i><b>3</b> Analysis of agronomic traits</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-agro.html"><a href="intro-agro.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-agro.html"><a href="intro-agro.html#objective-agro"><i class="fa fa-check"></i><b>3.1.1</b> Analysis according to the objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="intro-agro.html"><a href="intro-agro.html#family-analysis-agro"><i class="fa fa-check"></i><b>3.1.2</b> Family of analyses</a></li>
+<li class="chapter" data-level="3.1.3" data-path="intro-agro.html"><a href="intro-agro.html#expe-design"><i class="fa fa-check"></i><b>3.1.3</b> Experimental design</a></li>
+<li class="chapter" data-level="3.1.4" data-path="intro-agro.html"><a href="intro-agro.html#decision-tree"><i class="fa fa-check"></i><b>3.1.4</b> Decision tree</a></li>
+<li class="chapter" data-level="3.1.5" data-path="intro-agro.html"><a href="intro-agro.html#workflow-agro"><i class="fa fa-check"></i><b>3.1.5</b> Workflow and function relations in <code>PPBstats</code> regarding agronomic analysis</a></li>
+<li class="chapter" data-level="3.1.6" data-path="intro-agro.html"><a href="intro-agro.html#data-agro"><i class="fa fa-check"></i><b>3.1.6</b> Data format</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="doe.html"><a href="doe.html"><i class="fa fa-check"></i><b>3.2</b> Design the experiment</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="doe.html"><a href="doe.html#fully-replicated"><i class="fa fa-check"></i><b>3.2.1</b> Fully-replicated (<strong>D1</strong>)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="doe.html"><a href="doe.html#ibd"><i class="fa fa-check"></i><b>3.2.2</b> Incomplete Block Design (<strong>D2</strong>)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="doe.html"><a href="doe.html#row-column"><i class="fa fa-check"></i><b>3.2.3</b> Row-column (<strong>D3</strong>)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="doe.html"><a href="doe.html#rf-sf"><i class="fa fa-check"></i><b>3.2.4</b> Regional and satellite farms (<strong>D4</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="sow.html"><a href="sow.html"><i class="fa fa-check"></i><b>3.3</b> Sow, note, harvest, measure …</a></li>
+<li class="chapter" data-level="3.4" data-path="describe-data-agro.html"><a href="describe-data-agro.html"><i class="fa fa-check"></i><b>3.4</b> Describe the data</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="describe-data-agro.html"><a href="describe-data-agro.html#format-the-data-3"><i class="fa fa-check"></i><b>3.4.1</b> Format the data</a></li>
+<li class="chapter" data-level="3.4.2" data-path="describe-data-agro.html"><a href="describe-data-agro.html#presence-abscence-matrix"><i class="fa fa-check"></i><b>3.4.2</b> presence abscence matrix</a></li>
+<li class="chapter" data-level="3.4.3" data-path="describe-data-agro.html"><a href="describe-data-agro.html#histogramm"><i class="fa fa-check"></i><b>3.4.3</b> histogramm</a></li>
+<li class="chapter" data-level="3.4.4" data-path="describe-data-agro.html"><a href="describe-data-agro.html#barplot"><i class="fa fa-check"></i><b>3.4.4</b> barplot</a></li>
+<li class="chapter" data-level="3.4.5" data-path="describe-data-agro.html"><a href="describe-data-agro.html#boxplot"><i class="fa fa-check"></i><b>3.4.5</b> boxplot</a></li>
+<li class="chapter" data-level="3.4.6" data-path="describe-data-agro.html"><a href="describe-data-agro.html#interaction"><i class="fa fa-check"></i><b>3.4.6</b> interaction</a></li>
+<li class="chapter" data-level="3.4.7" data-path="describe-data-agro.html"><a href="describe-data-agro.html#biplot"><i class="fa fa-check"></i><b>3.4.7</b> biplot</a></li>
+<li class="chapter" data-level="3.4.8" data-path="describe-data-agro.html"><a href="describe-data-agro.html#radar"><i class="fa fa-check"></i><b>3.4.8</b> radar</a></li>
+<li class="chapter" data-level="3.4.9" data-path="describe-data-agro.html"><a href="describe-data-agro.html#raster"><i class="fa fa-check"></i><b>3.4.9</b> raster</a></li>
+<li class="chapter" data-level="3.4.10" data-path="describe-data-agro.html"><a href="describe-data-agro.html#map"><i class="fa fa-check"></i><b>3.4.10</b> map</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="family-1.html"><a href="family-1.html"><i class="fa fa-check"></i><b>3.5</b> Family 1 of analysis : Compare different varieties evaluated for selection in different locations.</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="family-1.html"><a href="family-1.html#decision-tree-1"><i class="fa fa-check"></i><b>3.5.1</b> Decision tree</a></li>
+<li class="chapter" data-level="3.5.2" data-path="family-1.html"><a href="family-1.html#workflow-and-function-relations-in-ppbstats-regarding-family-1-of-analysis"><i class="fa fa-check"></i><b>3.5.2</b> Workflow and function relations in <code>PPBstats</code> regarding family 1 of analysis</a></li>
+<li class="chapter" data-level="3.5.3" data-path="family-1.html"><a href="family-1.html#classic-anova"><i class="fa fa-check"></i><b>3.5.3</b> Classic ANOVA (<strong>M4a</strong>)</a></li>
+<li class="chapter" data-level="3.5.4" data-path="family-1.html"><a href="family-1.html#spatial-analysis"><i class="fa fa-check"></i><b>3.5.4</b> Spatial analysis (<strong>M4b</strong>)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="family-1.html"><a href="family-1.html#ibd-model"><i class="fa fa-check"></i><b>3.5.5</b> Mixted model for incomplete block design (<strong>M5</strong>)</a></li>
+<li class="chapter" data-level="3.5.6" data-path="family-1.html"><a href="family-1.html#model-1"><i class="fa fa-check"></i><b>3.5.6</b> Hierarchical Bayesian intra-location model to perform mean comparisons with each farm (<strong>M7a</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="family-2.html"><a href="family-2.html"><i class="fa fa-check"></i><b>3.6</b> Family 2 of analysis : Study the response of varieties under selection over several environments</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="family-2.html"><a href="family-2.html#decision-tree-2"><i class="fa fa-check"></i><b>3.6.1</b> Decision tree</a></li>
+<li class="chapter" data-level="3.6.2" data-path="family-2.html"><a href="family-2.html#workflow-and-function-relations-in-ppbstats-regarding-family-2-of-analysis"><i class="fa fa-check"></i><b>3.6.2</b> Workflow and function relations in <code>PPBstats</code> regarding family 2 of analysis</a></li>
+<li class="chapter" data-level="3.6.3" data-path="family-2.html"><a href="family-2.html#ammi"><i class="fa fa-check"></i><b>3.6.3</b> AMMI (<strong>M6a</strong>)</a></li>
+<li class="chapter" data-level="3.6.4" data-path="family-2.html"><a href="family-2.html#gge"><i class="fa fa-check"></i><b>3.6.4</b> GGE (<strong>M6b</strong>)</a></li>
+<li class="chapter" data-level="3.6.5" data-path="family-2.html"><a href="family-2.html#model-2"><i class="fa fa-check"></i><b>3.6.5</b> Hierarchical Bayesian <span class="math inline">\(G \times E\)</span> model to analyse <span class="math inline">\(G \times E\)</span> interaction in the network of farms (<strong>M7b</strong>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="family-3.html"><a href="family-3.html"><i class="fa fa-check"></i><b>3.7</b> Family 3 of analysis : effects from family 1 and 2 in a network of farms</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="family-3.html"><a href="family-3.html#model-3"><i class="fa fa-check"></i><b>3.7.1</b> model 3</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="family-4.html"><a href="family-4.html"><i class="fa fa-check"></i><b>3.8</b> Family 4 of analysis : specific research questions on one farm or more</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="family-4.html"><a href="family-4.html#response-to-selection"><i class="fa fa-check"></i><b>3.8.1</b> Study reponse to selection</a></li>
+<li class="chapter" data-level="3.8.2" data-path="family-4.html"><a href="family-4.html#study-local-adaptation"><i class="fa fa-check"></i><b>3.8.2</b> Study local adaptation</a></li>
+<li class="chapter" data-level="3.8.3" data-path="family-4.html"><a href="family-4.html#variance-intra"><i class="fa fa-check"></i><b>3.8.3</b> Study variance within germplasm</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="family-5.html"><a href="family-5.html"><i class="fa fa-check"></i><b>3.9</b> Family 5 of analysis : multivariate analysis</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="family-5.html"><a href="family-5.html#decision-tree-3"><i class="fa fa-check"></i><b>3.9.1</b> Decision tree</a></li>
+<li class="chapter" data-level="3.9.2" data-path="family-5.html"><a href="family-5.html#workflow-and-function-relations-in-ppbstats-regarding-family-2-of-analysis-1"><i class="fa fa-check"></i><b>3.9.2</b> Workflow and function relations in <code>PPBstats</code> regarding family 2 of analysis</a></li>
+<li class="chapter" data-level="3.9.3" data-path="family-5.html"><a href="family-5.html#steps-with-ppbstats-12"><i class="fa fa-check"></i><b>3.9.3</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="3.9.4" data-path="family-5.html"><a href="family-5.html#format-the-data-11"><i class="fa fa-check"></i><b>3.9.4</b> Format the data</a></li>
+<li class="chapter" data-level="3.9.5" data-path="family-5.html"><a href="family-5.html#look-at-correlation"><i class="fa fa-check"></i><b>3.9.5</b> Look at correlation</a></li>
+<li class="chapter" data-level="3.9.6" data-path="family-5.html"><a href="family-5.html#run-the-analysis"><i class="fa fa-check"></i><b>3.9.6</b> Run the analysis</a></li>
+<li class="chapter" data-level="3.9.7" data-path="family-5.html"><a href="family-5.html#check-outputs-and-results"><i class="fa fa-check"></i><b>3.9.7</b> Check outputs and results</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="organoleptic.html"><a href="organoleptic.html"><i class="fa fa-check"></i><b>4</b> Sensory analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="intro-organo.html"><a href="intro-organo.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="intro-organo.html"><a href="intro-organo.html#objective-organo"><i class="fa fa-check"></i><b>4.1.1</b> Analysis according to the objectives</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intro-organo.html"><a href="intro-organo.html#decision-tree-organo"><i class="fa fa-check"></i><b>4.1.2</b> Decision tree</a></li>
+<li class="chapter" data-level="4.1.3" data-path="intro-organo.html"><a href="intro-organo.html#workflow-organo"><i class="fa fa-check"></i><b>4.1.3</b> Workflow and function relations in <code>PPBstats</code> regarding organoleptic analysis</a></li>
+<li class="chapter" data-level="4.1.4" data-path="intro-organo.html"><a href="intro-organo.html#data-organo"><i class="fa fa-check"></i><b>4.1.4</b> Data format</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="taste.html"><a href="taste.html"><i class="fa fa-check"></i><b>4.2</b> Taste and measure …</a></li>
+<li class="chapter" data-level="4.3" data-path="hedonic.html"><a href="hedonic.html"><i class="fa fa-check"></i><b>4.3</b> Hedonic analysis (<strong>M9b</strong>)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="hedonic.html"><a href="hedonic.html#method-description"><i class="fa fa-check"></i><b>4.3.1</b> Method description</a></li>
+<li class="chapter" data-level="4.3.2" data-path="hedonic.html"><a href="hedonic.html#steps-with-ppbstats-13"><i class="fa fa-check"></i><b>4.3.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.3.3" data-path="hedonic.html"><a href="hedonic.html#format-the-data-12"><i class="fa fa-check"></i><b>4.3.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.3.4" data-path="hedonic.html"><a href="hedonic.html#describe-the-data-4"><i class="fa fa-check"></i><b>4.3.4</b> Describe the data</a></li>
+<li class="chapter" data-level="4.3.5" data-path="hedonic.html"><a href="hedonic.html#run-the-model-9"><i class="fa fa-check"></i><b>4.3.5</b> Run the model</a></li>
+<li class="chapter" data-level="4.3.6" data-path="hedonic.html"><a href="hedonic.html#check-and-visualize-model-outputs-9"><i class="fa fa-check"></i><b>4.3.6</b> Check and visualize model outputs</a></li>
+<li class="chapter" data-level="4.3.7" data-path="hedonic.html"><a href="hedonic.html#get-and-visualize-mean-comparisons-on-note"><i class="fa fa-check"></i><b>4.3.7</b> Get and visualize mean comparisons on note</a></li>
+<li class="chapter" data-level="4.3.8" data-path="hedonic.html"><a href="hedonic.html#get-and-visualize-biplot-regarding-samples-ca-and-juges-hcpc"><i class="fa fa-check"></i><b>4.3.8</b> Get and visualize biplot regarding samples (CA) and juges (HCPC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="napping.html"><a href="napping.html"><i class="fa fa-check"></i><b>4.4</b> Napping analysis (<strong>M9a</strong>)</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="napping.html"><a href="napping.html#method-description-1"><i class="fa fa-check"></i><b>4.4.1</b> Method description</a></li>
+<li class="chapter" data-level="4.4.2" data-path="napping.html"><a href="napping.html#steps-with-ppbstats-14"><i class="fa fa-check"></i><b>4.4.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="napping.html"><a href="napping.html#format-the-data-13"><i class="fa fa-check"></i><b>4.4.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.4.4" data-path="napping.html"><a href="napping.html#describe-the-data-5"><i class="fa fa-check"></i><b>4.4.4</b> Describe the data</a></li>
+<li class="chapter" data-level="4.4.5" data-path="napping.html"><a href="napping.html#run-the-model-10"><i class="fa fa-check"></i><b>4.4.5</b> Run the model</a></li>
+<li class="chapter" data-level="4.4.6" data-path="napping.html"><a href="napping.html#check-and-visualize-model-outputs-10"><i class="fa fa-check"></i><b>4.4.6</b> Check and visualize model outputs</a></li>
+<li class="chapter" data-level="4.4.7" data-path="napping.html"><a href="napping.html#get-and-visualize-biplot-2"><i class="fa fa-check"></i><b>4.4.7</b> Get and visualize biplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="rank.html"><a href="rank.html"><i class="fa fa-check"></i><b>4.5</b> Rank analysis (<strong>M9c</strong>)</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="rank.html"><a href="rank.html#method-description-2"><i class="fa fa-check"></i><b>4.5.1</b> Method description</a></li>
+<li class="chapter" data-level="4.5.2" data-path="rank.html"><a href="rank.html#steps-with-ppbstats-15"><i class="fa fa-check"></i><b>4.5.2</b> Steps with <code>PPBstats</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="rank.html"><a href="rank.html#format-the-data-14"><i class="fa fa-check"></i><b>4.5.3</b> Format the data</a></li>
+<li class="chapter" data-level="4.5.4" data-path="rank.html"><a href="rank.html#run-the-model-11"><i class="fa fa-check"></i><b>4.5.4</b> Run the model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="molecular.html"><a href="molecular.html"><i class="fa fa-check"></i><b>5</b> Molecular analysis (<strong>M3</strong>)</a></li>
+<li class="chapter" data-level="6" data-path="com.html"><a href="com.html"><i class="fa fa-check"></i><b>6</b> Communicate results to farmers</a><ul>
+<li class="chapter" data-level="6.1" data-path="com-technic.html"><a href="com-technic.html"><i class="fa fa-check"></i><b>6.1</b> Technical aspects</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="com-technic.html"><a href="com-technic.html#run-the-analysis-1"><i class="fa fa-check"></i><b>6.1.1</b> Run the analysis</a></li>
+<li class="chapter" data-level="6.1.2" data-path="com-technic.html"><a href="com-technic.html#create-a-.rmd-template"><i class="fa fa-check"></i><b>6.1.2</b> Create a <code>.Rmd</code> template</a></li>
+<li class="chapter" data-level="6.1.3" data-path="com-technic.html"><a href="com-technic.html#generate-a-report-for-each-location"><i class="fa fa-check"></i><b>6.1.3</b> Generate a report for each location</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="com-rules.html"><a href="com-rules.html"><i class="fa fa-check"></i><b>6.2</b> Organisational aspects on collective work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://priviere.github.io/PPBstats_web_site/index.html" target="_blank">PPBstats website</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>PPBstats</code> : An <code>R</code> package for Participatory Plant Breeding statisticial analyses</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="family-1" class="section level2">
+<h2><span class="header-section-number">3.5</span> Family 1 of analysis : Compare different varieties evaluated for selection in different locations.</h2>
+<p><strong>Family 1</strong> gathers analyses that estimate entry effects.
+It allows to compare different entries on each location and test for significant differences among entries.
+Specific analysis including response to selection can also be done.
+The objective to compare different germplasms on each location for selection.</p>
+<div id="decision-tree-1" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Decision tree</h3>
+<p>To compare different germplasms on each location for selection, different scenarios are possible (Figure <a href="family-1.html#fig:decision-tree-Compare-different-varieties-evaluated-for-selection-in-different-locations-agro">3.22</a>) :</p>
+<ul>
+<li>classic anova (<strong>M4a</strong>, section <a href="family-1.html#classic-anova">3.5.3</a>) based on on fully replicated designs (<strong>D1</strong>, section <a href="doe.html#fully-replicated">3.2.1</a>),</li>
+<li>spatial analysis (<strong>M4b</strong>, section <a href="family-1.html#spatial-analysis">3.5.4</a>) based on row-column designs (<strong>D3</strong>, section <a href="doe.html#row-column">3.2.3</a>),</li>
+<li>mixed models (<strong>M5</strong>, section<a href="family-1.html#ibd-model">3.5.5</a>) for incomplete blocks designs (<strong>D2</strong>, section <a href="doe.html#ibd">3.2.2</a>),</li>
+<li>bayesian hierarchical model intra-location (<strong>M7a</strong>, section <a href="family-1.html#model-1">3.5.6</a>) based on satellite-regional farms designs (<strong>D4</strong>, section <a href="doe.html#rf-sf">3.2.4</a>).</li>
+</ul>
+<p>It can be completed by organoleptic analysis (section <a href="organoleptic.html#organoleptic">4</a>).
+Based on these analysis, specific objective including response to selection analysis can also be done.</p>
+<div class="figure" style="text-align: center"><span id="fig:decision-tree-Compare-different-varieties-evaluated-for-selection-in-different-locations-agro"></span>
+<img src="figures/decision-tree_Compare-different-varieties-evaluated-for-selection-in-different-locations_agro.png" alt="Decision tree with experimental constraints, designs and methods of agronomic analysis carry out in `PPBstats` regarding the objective : Compare different varieties evaluated for selection in different locations. **D** refers to designs and **M** to methods." width="100%" />
+<p class="caption">
+Figure 3.22: Decision tree with experimental constraints, designs and methods of agronomic analysis carry out in <code>PPBstats</code> regarding the objective : Compare different varieties evaluated for selection in different locations. <strong>D</strong> refers to designs and <strong>M</strong> to methods.
+</p>
+</div>
+</div>
+<div id="workflow-and-function-relations-in-ppbstats-regarding-family-1-of-analysis" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Workflow and function relations in <code>PPBstats</code> regarding family 1 of analysis</h3>
+<p>Figure <a href="family-1.html#fig:main-workflow-family-1">3.23</a> displays the functions and their relationships.
+Table <a href="family-1.html#tab:function-descriptions-workflow-family-1">3.2</a> describes each of the main functions.</p>
+<p>You can have more information for each function by typing <code>?function_name</code> in your R session.
+Note that <code>check_model()</code>, <code>mean_comparison()</code> and <code>plot()</code> are S3 method.
+Therefore, you should type <code>?check_model</code>, <code>?mean_comparison</code> or <code>?plot.PPBstats</code> to have general features and then see in details for specific functions.</p>
+<div class="figure" style="text-align: center"><span id="fig:main-workflow-family-1"></span>
+<img src="figures/main-functions-agro-family-1.png" alt="Main functions used in the workflow of family 1." width="90%" />
+<p class="caption">
+Figure 3.23: Main functions used in the workflow of family 1.
+</p>
+</div>
+<table>
+<caption><span id="tab:function-descriptions-workflow-family-1">Table 3.2: </span> Function description.</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>function name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>design_experiment</code></td>
+<td>Provides experimental design for the different situations corresponding to the choosen family of analysis</td>
+</tr>
+<tr class="even">
+<td><code>format_data_PPBstats</code></td>
+<td>Check and format the data to be used in <code>PPBstats</code> functions</td>
+</tr>
+<tr class="odd">
+<td><code>model_bh_intra-location</code></td>
+<td>Run Hierarchical Bayesian intra-location model</td>
+</tr>
+<tr class="even">
+<td><code>model_spatial</code></td>
+<td>Run spatial row and column model</td>
+</tr>
+<tr class="odd">
+<td><code>model_anova</code></td>
+<td>Run classic anova model</td>
+</tr>
+<tr class="even">
+<td><code>check_model</code></td>
+<td>Check if the model went well</td>
+</tr>
+<tr class="odd">
+<td><code>mean_comparisons</code></td>
+<td>Get mean comparisons</td>
+</tr>
+<tr class="even">
+<td><code>plot</code></td>
+<td>Build ggplot objects to visualize output</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div id="classic-anova" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Classic ANOVA (<strong>M4a</strong>)</h3>
+<div id="theory-of-the-model" class="section level4">
+<h4><span class="header-section-number">3.5.3.1</span> Theory of the model</h4>
+<p>The experimental design used is fully replicated (<strong>D1</strong>) on one location.
+The model is based on frequentist statistics (section <a href="intro-agro.html#section-freq">3.1.2.1</a>).
+The tests to check the model are explained in section <a href="intro-agro.html#check-model-freq">3.1.2.1.2</a>.
+The method to compute mean comparison are explained in section <a href="intro-agro.html#mean-comp-check-freq">3.1.2.1.3</a>.
+The analysis is done the following model :</p>
+<p><span class="math inline">\(Y_{ijk} = \mu + \alpha_{i} + rep_{k} + \varepsilon_{ijk}; \quad \varepsilon_{ijk} \sim \mathcal{N} (0,\sigma^2)\)</span></p>
+<p>With,</p>
+<ul>
+<li><span class="math inline">\(Y_{ijk}\)</span> the phenotypic value for replication <span class="math inline">\(k\)</span>, germplasm <span class="math inline">\(i\)</span> and individual <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(\mu\)</span> the general mean,</li>
+<li><span class="math inline">\(\alpha_{i}\)</span> the effect of germplasm <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(rep_{k}\)</span> the effect of the replication <span class="math inline">\(k\)</span>,</li>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> the residuals.</li>
+</ul>
+</div>
+<div id="steps-with-ppbstats-3" class="section level4">
+<h4><span class="header-section-number">3.5.3.2</span> Steps with <code>PPBstats</code></h4>
+<p>For classic anova analysis, you can follow these steps (Figure <a href="intro-agro.html#fig:main-workflow">3.2</a>):</p>
+<ul>
+<li>Format the data with <code>format_data_PPBstats()</code></li>
+<li>Run the model with <code>model_anova</code></li>
+<li>Check model outputs to know if you can continue the analysis with <code>check_model()</code> and vizualise it with <code>plot()</code></li>
+<li>Get mean comparisons for each factor with <code>mean_comparisons()</code> and vizualise it with <code>plot()</code></li>
+</ul>
+</div>
+<div id="format-the-data-4" class="section level4">
+<h4><span class="header-section-number">3.5.3.3</span> Format the data</h4>
+<p>A subset of <code>data_model_GxE</code> is used in this exemple.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(data_model_GxE)
+data_model_anova =<span class="st"> </span><span class="kw">droplevels</span>(dplyr<span class="op">::</span><span class="kw">filter</span>(data_model_GxE, location <span class="op">==</span><span class="st"> &quot;loc-1&quot;</span>))  
+data_model_anova =<span class="st"> </span><span class="kw">format_data_PPBstats</span>(data_model_anova, <span class="dt">type =</span> <span class="st">&quot;data_agro&quot;</span>)</code></pre>
+<pre><code>## data has been formated for PPBstats functions.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_model_anova)</code></pre>
+<pre><code>##                  seed_lot location     long      lat year germplasm block
+## 1 germ-12_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-12     1
+## 2  germ-1_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-1     1
+## 3 germ-18_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-18     1
+## 4 germ-14_loc-1_2005_0001    loc-1 0.616363 44.20314 2005   germ-14     1
+## 5  germ-6_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-6     1
+## 6  germ-4_loc-1_2005_0001    loc-1 0.616363 44.20314 2005    germ-4     1
+##   X Y       y1    y1$date       y2    y2$date       y3    y3$date desease
+## 1 A 1 14.32724 2017-07-15 41.85377 2017-07-15 66.05498 2017-07-15     low
+## 2 A 2 23.03428 2017-07-15 37.38970 2017-07-15 63.39528 2017-07-15     low
+## 3 A 3 24.91349 2017-07-15 38.38628 2017-07-15 60.52710 2017-07-15    high
+## 4 A 4 24.99078 2017-07-15 39.72205 2017-07-15 60.80393 2017-07-15     low
+## 5 A 5 18.95340 2017-07-15 46.60443 2017-07-15 53.71210 2017-07-15    high
+## 6 B 1 21.31660 2017-07-15 49.94656 2017-07-15 60.71978 2017-07-15  medium
+##   vigor y1$date_julian y2$date_julian y3$date_julian
+## 1     l            195            195            195
+## 2     l            195            195            195
+## 3     h            195            195            195
+## 4     l            195            195            195
+## 5     m            195            195            195
+## 6     l            195            195            195</code></pre>
+</div>
+<div id="run-the-model" class="section level4">
+<h4><span class="header-section-number">3.5.3.4</span> Run the model</h4>
+<p>To run model on the dataset, used the function <code>model_anova</code>.
+You can run it on one variable.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_anova =<span class="st"> </span><span class="kw">model_anova</span>(data_model_anova, <span class="dt">variable =</span> <span class="st">&quot;y1&quot;</span>)</code></pre>
+<p><code>out_anova</code> is a list containing two elements :</p>
+<ul>
+<li><code>info</code> : a list with variable</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_anova<span class="op">$</span>info</code></pre>
+<pre><code>## $variable
+## [1] &quot;y1&quot;</code></pre>
+<ul>
+<li><code>ANOVA</code> a list with two elements :
+<ul>
+<li><code>model</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_anova<span class="op">$</span>ANOVA<span class="op">$</span>model</code></pre>
+<pre><code>## 
+## Call:
+## stats::lm(formula = variable ~ germplasm + block, data = data)
+## 
+## Coefficients:
+## (Intercept)   germplasm1   germplasm2   germplasm3   germplasm4  
+##    20.26702      1.60183      0.02397     -0.39822      1.21183  
+##  germplasm5   germplasm6   germplasm7   germplasm8   germplasm9  
+##     1.06590      3.76010     -5.10761     -0.92696      2.63546  
+## germplasm10  germplasm11  germplasm12  germplasm13  germplasm14  
+##     0.42415      1.56248     -5.76240     -4.62059      0.47600  
+## germplasm15  germplasm16  germplasm17  germplasm18  germplasm19  
+##     1.43492     -1.55346      0.89022      0.39441      1.16307  
+##      block1       block2  
+##    -0.93928     -0.22936</code></pre>
+<ul>
+<li><code>anova_model</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_anova<span class="op">$</span>ANOVA<span class="op">$</span>anova_model</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: variable
+##           Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## germplasm 19  361.54  19.028  0.5090 0.9414
+## block      2   46.01  23.006  0.6154 0.5457
+## Residuals 38 1420.67  37.386</code></pre>
+<ul>
+<li><code>germplasm_effects</code> a list of two elements :
+<ul>
+<li><code>effects</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_anova<span class="op">$</span>ANOVA<span class="op">$</span>germplasm_effects<span class="op">$</span>effects</code></pre>
+<pre><code>##      germ-1     germ-10     germ-11     germ-12     germ-13     germ-14 
+##  1.60183489  0.02396579 -0.39821799  1.21183407  1.06590372  3.76009917 
+##     germ-15     germ-16     germ-17     germ-18     germ-19      germ-2 
+## -5.10761419 -0.92695642  2.63546203  0.42415203  1.56247594 -5.76239571 
+##     germ-20      germ-3      germ-4      germ-5      germ-6      germ-7 
+## -4.62059183  0.47600360  1.43491926 -1.55346262  0.89022028  0.39441135 
+##      germ-8      germ-9 
+##  1.16306897  1.72488766</code></pre>
+<ul>
+<li><code>intra_variance</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_anova<span class="op">$</span>ANOVA<span class="op">$</span>germplasm_effects<span class="op">$</span>intra_variance</code></pre>
+<pre><code>##     germ-1    germ-10    germ-11    germ-12    germ-13    germ-14 
+##  14.550965 204.517046  28.558887  45.376513  51.105885   3.216895 
+##    germ-15    germ-16    germ-17    germ-18    germ-19     germ-2 
+##  21.434155  19.650429  28.827606  24.862755  80.733922   2.938909 
+##    germ-20     germ-3     germ-4     germ-5     germ-6     germ-7 
+##  17.722408  43.102002  10.437349  37.931023  13.113586  44.667769 
+##     germ-8     germ-9 
+##   7.226053  10.361250</code></pre></li>
+</ul></li>
+</ul>
+</div>
+<div id="check-and-visualize-model-outputs" class="section level4">
+<h4><span class="header-section-number">3.5.3.5</span> Check and visualize model outputs</h4>
+<p>The tests to check the model are explained in section <a href="intro-agro.html#check-model-freq">3.1.2.1.2</a>.</p>
+<div id="check-the-model" class="section level5">
+<h5><span class="header-section-number">3.5.3.5.1</span> Check the model</h5>
+<p>Once the model is run, it is necessary to check if the outputs can be taken with confidence.
+This step is needed before going ahead in the analysis (in fact, object used in the next functions must come from <code>check_model()</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_check_anova =<span class="st"> </span><span class="kw">check_model</span>(out_anova)</code></pre>
+<p><code>out_check_anova</code> is a list containing four elements :</p>
+<ul>
+<li><code>info</code> : a list with variable</li>
+<li><code>model_anova</code> the output from the model</li>
+<li><code>data_ggplot</code> a list containing information for ggplot:
+<ul>
+<li><code>data_ggplot_residuals</code> a list containing :
+<ul>
+<li><code>data_ggplot_normality</code></li>
+<li><code>data_ggplot_skewness_test</code></li>
+<li><code>data_ggplot_kurtosis_test</code></li>
+<li><code>data_ggplot_qqplot</code></li>
+</ul></li>
+<li><code>data_ggplot_variability_repartition_pie</code></li>
+<li><code>data_ggplot_var_intra</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="visualize-outputs" class="section level5">
+<h5><span class="header-section-number">3.5.3.5.2</span> Visualize outputs</h5>
+<p>Once the computation is done, you can visualize the results with <code>plot()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_anova =<span class="st"> </span><span class="kw">plot</span>(out_check_anova)</code></pre>
+<p><code>p_out_check_anova</code> is a list with:</p>
+<ul>
+<li><code>residuals</code>
+<ul>
+<li><code>histogram</code> : histogram with the distribution of the residuals</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_anova<span class="op">$</span>residuals<span class="op">$</span>histogram</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<img src="PPBstats_book_files/figure-html/unnamed-chunk-97-1.png" width="672" />
+<ul>
+<li><code>qqplot</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_anova<span class="op">$</span>residuals<span class="op">$</span>qqplot</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p></li>
+<li><p><code>variability_repartition</code> : pie with repartition of SumSq for each factor</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_anova<span class="op">$</span>variability_repartition</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<ul>
+<li><code>variance_intra_germplasm</code> : repartition of the residuals for each germplasm (see Details for more information)
+With the hypothesis than the micro-environmental variation is equaly distributed on all the individuals (i.e. all the plants), the distribution of each germplasm represent the intra-germplasm variance.
+This has to been seen with caution:
+<ul>
+<li>If germplasm have no intra-germplasm variance (i.e. pure line or hybrides) then the distribution of each germplasm represent only the micro-environmental variation.</li>
+<li>If germplasm have intra-germplasm variance (i.e. population such as landraces for example) then the distribution of each germplasm represent the micro-environmental variation plus the intra-germplasm variance.</li>
+</ul></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_anova<span class="op">$</span>variance_intra_germplasm</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-and-visualize-mean-comparisons" class="section level4">
+<h4><span class="header-section-number">3.5.3.6</span> Get and visualize mean comparisons</h4>
+<p>The method to compute mean comparison are explained in section <a href="intro-agro.html#mean-comp-check-freq">3.1.2.1.3</a>.</p>
+<div id="get-mean-comparisons" class="section level5">
+<h5><span class="header-section-number">3.5.3.6.1</span> Get mean comparisons</h5>
+<p>Get mean comparisons with <code>mean_comparisons()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_mean_comparisons_anova =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_anova, <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>)</code></pre>
+<p><code>out_mean_comparisons_anova</code> is a list of two elements:</p>
+<ul>
+<li><code>info</code> : a list with variable</li>
+<li><code>data_ggplot_LSDbarplot_germplasm</code></li>
+</ul>
+</div>
+<div id="visualize-mean-comparisons" class="section level5">
+<h5><span class="header-section-number">3.5.3.6.2</span> Visualize mean comparisons</h5>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_mean_comparisons_anova =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_anova)</code></pre>
+<p><code>p_out_mean_comparisons_anova</code> is a list of one element with barplots :</p>
+<p>For each element of the list, there are as many graph as needed with <code>nb_parameters_per_plot</code> parameters per graph.
+Letters are displayed on each bar. Parameters that do not share the same letters are different regarding type I error (alpha) and alpha correction.
+The error I (alpha) and the alpha correction are displayed in the title.</p>
+<ul>
+<li><code>germplasm</code> : mean comparison for germplasm</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">pg =<span class="st"> </span>p_out_mean_comparisons_anova<span class="op">$</span>germplasm
+<span class="kw">names</span>(pg)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pg<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+<div id="spatial-analysis" class="section level3">
+<h3><span class="header-section-number">3.5.4</span> Spatial analysis (<strong>M4b</strong>)</h3>
+<div id="theory-of-the-model-1" class="section level4">
+<h4><span class="header-section-number">3.5.4.1</span> Theory of the model</h4>
+<p>The experimental design used is the row-column design (<strong>D3</strong>).
+The following model is based on frequentist statistics (section <a href="intro-agro.html#section-freq">3.1.2.1</a>).
+The model allows taking into account environmental variation within a block with few control replicated in rows and columns.</p>
+<p>It is based on a SpATS (Spatial Analysis of Field Trials with Splines) model proposed by <span class="citation">Rodrı'guez-Álvarez et al. (<a href="#ref-rodriguez_spatial_2016">2016</a>)</span> :</p>
+<p><span class="math inline">\(Y_{ijk} = \alpha_{i} + r_{j} + c_{k} + f(u,v) + \varepsilon_{ijk}; \quad \varepsilon_{ijk} \sim \mathcal{N} (0,\sigma^2)\)</span></p>
+<p>With,</p>
+<ul>
+<li><span class="math inline">\(Y_{ijk}\)</span> the phenotypic value for germplasm <span class="math inline">\(i\)</span>, row <span class="math inline">\(j\)</span> and column <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\alpha_{i}\)</span> the random effect of germplasm <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(r_{j}\)</span> the effect of row <span class="math inline">\(j\)</span></li>
+<li><span class="math inline">\(c_{k}\)</span> the effect of col <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(f(u,v)\)</span> the smooth bivariate function that simultaneously accounts for the spatial trend across both directions of the fiel (i.e. rows and columns)</li>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> the residuals</li>
+</ul>
+<p>Note that <span class="math inline">\(f(u,v)\)</span> is divided into 8 components excluding the intercept <span class="citation">(Rodrı'guez-Álvarez et al. <a href="#ref-rodriguez_spatial_2016">2016</a>)</span>:</p>
+<ul>
+<li>the linear effect of the rows (row),</li>
+<li>the linear effect of the columns (col),</li>
+<li>the linear interaction of rows and columns (row:col),</li>
+<li>the main row effect (f(row)),</li>
+<li>the main column effect (f(col)),</li>
+<li>the smooth varying coefficient term regarding rows (f(col):row),</li>
+<li>the smooth varying coefficient term regarding columns (row:f(col))),</li>
+<li>the smooth-by-smooth interaction component (f(col):f(row))</li>
+</ul>
+<p>Much more information regarding the model as well as example of R package <code>SpATS</code> can be found in <span class="citation">Rodrı'guez-Álvarez et al. (<a href="#ref-rodriguez_spatial_2016">2016</a>)</span>.</p>
+</div>
+<div id="steps-with-ppbstats-4" class="section level4">
+<h4><span class="header-section-number">3.5.4.2</span> Steps with <code>PPBstats</code></h4>
+<ul>
+<li>Format the data with <code>format_data_PPBstats()</code></li>
+<li>Run the model with <code>model_spatial()</code></li>
+<li>Check model outputs with graphs to know if you can continue the analysis with <code>check_model()</code> and vizualise it with <code>plot()</code></li>
+<li>Get mean comparisons for germplasms with <code>mean_comparisons()</code> and vizualise it with <code>plot()</code></li>
+</ul>
+</div>
+<div id="format-the-data-5" class="section level4">
+<h4><span class="header-section-number">3.5.4.3</span> Format the data</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;data_model_spatial&quot;</span>)
+data_model_spatial =<span class="st"> </span><span class="kw">format_data_PPBstats</span>(data_model_spatial, <span class="dt">type =</span> <span class="st">&quot;data_agro&quot;</span>)</code></pre>
+<pre><code>## Warning in format_data_PPBstats.data_agro(data): Column &quot;long&quot; is needed to
+## get map and not present in data.</code></pre>
+<pre><code>## Warning in format_data_PPBstats.data_agro(data): Column &quot;lat&quot; is needed to
+## get map and not present in data.</code></pre>
+<pre><code>## data has been formated for PPBstats functions.</code></pre>
+</div>
+<div id="run-the-model-1" class="section level4">
+<h4><span class="header-section-number">3.5.4.4</span> Run the model</h4>
+<p>By default, germplasm are settled as random.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_spatial =<span class="st"> </span><span class="kw">model_spatial</span>(<span class="dt">data =</span> data_model_spatial, <span class="dt">variable =</span> <span class="st">&quot;y1&quot;</span>)</code></pre>
+<pre><code>## Effective dimensions
+## -------------------------
+## It.     Deviance   germplasm       col_f       row_f      f(col)      f(row)  f(col):row  col:f(row)f(col):f(row)
+##   1 32230.908352      77.713       0.721       0.358      11.835       0.260      10.118       0.259       5.122
+##   2  1381.145352      78.477       0.842       0.688       8.927       0.162       7.951       0.300       5.322
+##   3  1372.535535      79.099       0.960       0.978       6.672       0.076       6.337       0.322       5.415
+##   4  1366.744421      79.500       1.074       1.125       4.901       0.028       5.204       0.322       5.489
+##   5  1363.081900      79.535       1.181       1.172       3.519       0.009       4.528       0.301       5.636
+##   6  1360.738664      79.195       1.281       1.182       2.449       0.003       4.155       0.269       5.922
+##   7  1359.521819      78.552       1.374       1.182       1.701       0.001       3.934       0.235       6.325
+##   8  1359.207730      77.656       1.457       1.181       1.397       0.000       3.769       0.206       6.764
+##   9  1359.079764      76.642       1.536       1.180       1.327       0.000       3.621       0.183       7.188
+##  10  1358.974057      75.611       1.617       1.178       1.304       0.000       3.485       0.164       7.578
+##  11  1358.878185      74.585       1.701       1.175       1.290       0.000       3.356       0.147       7.934
+##  12  1358.787396      73.571       1.787       1.171       1.278       0.000       3.228       0.132       8.256
+##  13  1358.697592      72.570       1.875       1.168       1.268       0.000       3.098       0.119       8.547
+##  14  1358.604502      71.580       1.965       1.165       1.258       0.000       2.960       0.107       8.810
+##  15  1358.503034      70.600       2.057       1.161       1.249       0.000       2.813       0.096       9.051
+##  16  1358.386490      69.626       2.151       1.158       1.240       0.000       2.649       0.087       9.272
+##  17  1358.245521      68.654       2.246       1.155       1.231       0.000       2.464       0.078       9.478
+##  18  1358.066927      67.679       2.343       1.151       1.223       0.000       2.252       0.070       9.672
+##  19  1357.832952      66.698       2.440       1.147       1.215       0.000       2.004       0.063       9.859
+##  20  1357.522974      65.703       2.536       1.143       1.208       0.000       1.715       0.056      10.042
+##  21  1357.121302      64.692       2.632       1.139       1.202       0.000       1.379       0.050      10.220
+##  22  1356.636368      63.663       2.725       1.136       1.198       0.000       0.999       0.044      10.392
+##  23  1356.137281      62.621       2.817       1.134       1.195       0.000       0.592       0.039      10.551
+##  24  1355.764187      61.561       2.910       1.133       1.192       0.000       0.249       0.035      10.684
+##  25  1355.579891      60.477       3.005       1.133       1.188       0.000       0.074       0.031      10.776
+##  26  1355.502334      59.399       3.103       1.134       1.185       0.000       0.018       0.028      10.840
+##  27  1355.460151      58.356       3.203       1.134       1.182       0.000       0.004       0.025      10.889
+##  28  1355.428453      57.354       3.304       1.134       1.179       0.000       0.001       0.022      10.929
+##  29  1355.400641      56.393       3.406       1.134       1.177       0.000       0.000       0.020      10.962
+##  30  1355.374996      55.469       3.509       1.134       1.175       0.000       0.000       0.018      10.990
+##  31  1355.350988      54.579       3.613       1.134       1.174       0.000       0.000       0.016      11.013
+##  32  1355.328384      53.722       3.716       1.134       1.172       0.000       0.000       0.015      11.032
+##  33  1355.307038      52.894       3.820       1.134       1.170       0.000       0.000       0.013      11.047
+##  34  1355.286835      52.094       3.924       1.134       1.169       0.000       0.000       0.012      11.059
+##  35  1355.267678      51.319       4.027       1.134       1.168       0.000       0.000       0.011      11.069
+##  36  1355.249485      50.569       4.129       1.133       1.166       0.000       0.000       0.010      11.077
+##  37  1355.232183      49.841       4.231       1.133       1.165       0.000       0.000       0.009      11.083
+##  38  1355.215708      49.134       4.331       1.133       1.164       0.000       0.000       0.008      11.087
+##  39  1355.200003      48.448       4.431       1.133       1.162       0.000       0.000       0.008      11.090
+##  40  1355.185015      47.779       4.529       1.133       1.161       0.000       0.000       0.007      11.092
+##  41  1355.170700      47.129       4.625       1.133       1.160       0.000       0.000       0.006      11.093
+##  42  1355.157014      46.495       4.719       1.133       1.159       0.000       0.000       0.006      11.093
+##  43  1355.143919      45.877       4.812       1.133       1.158       0.000       0.000       0.005      11.093
+##  44  1355.131378      45.275       4.902       1.133       1.157       0.000       0.000       0.005      11.092
+##  45  1355.119359      44.686       4.990       1.133       1.156       0.000       0.000       0.005      11.090
+##  46  1355.107831      44.111       5.077       1.133       1.155       0.000       0.000       0.004      11.088
+##  47  1355.096764      43.549       5.160       1.133       1.154       0.000       0.000       0.004      11.086
+##  48  1355.086132      43.000       5.242       1.133       1.153       0.000       0.000       0.004      11.084
+##  49  1355.075909      42.462       5.320       1.133       1.152       0.000       0.000       0.003      11.081
+##  50  1355.066070      41.936       5.397       1.133       1.151       0.000       0.000       0.003      11.078
+##  51  1355.056594      41.420       5.471       1.133       1.151       0.000       0.000       0.003      11.075
+##  52  1355.047459      40.915       5.542       1.133       1.150       0.000       0.000       0.003      11.072
+##  53  1355.038645      40.419       5.611       1.133       1.149       0.000       0.000       0.003      11.069
+##  54  1355.030133      39.933       5.677       1.133       1.148       0.000       0.000       0.002      11.066
+##  55  1355.021905      39.457       5.741       1.133       1.148       0.000       0.000       0.002      11.063
+##  56  1355.013944      38.989       5.803       1.133       1.147       0.000       0.000       0.002      11.060
+##  57  1355.006234      38.529       5.862       1.132       1.146       0.000       0.000       0.002      11.057
+##  58  1354.998761      38.078       5.919       1.132       1.146       0.000       0.000       0.002      11.054
+##  59  1354.991511      37.634       5.974       1.132       1.145       0.000       0.000       0.002      11.051
+##  60  1354.984470      37.198       6.026       1.132       1.145       0.000       0.000       0.002      11.048
+##  61  1354.977626      36.769       6.076       1.132       1.144       0.000       0.000       0.001      11.045
+##  62  1354.970968      36.347       6.124       1.132       1.143       0.000       0.000       0.001      11.042
+##  63  1354.964484      35.931       6.170       1.132       1.143       0.000       0.000       0.001      11.040
+##  64  1354.958165      35.522       6.215       1.132       1.143       0.000       0.000       0.001      11.037
+##  65  1354.952001      35.120       6.257       1.132       1.142       0.000       0.000       0.001      11.034
+##  66  1354.945982      34.723       6.297       1.132       1.142       0.000       0.000       0.001      11.032
+##  67  1354.940102      34.332       6.336       1.132       1.141       0.000       0.000       0.001      11.029
+##  68  1354.934351      33.946       6.373       1.132       1.141       0.000       0.000       0.001      11.027
+##  69  1354.928723      33.566       6.409       1.132       1.140       0.000       0.000       0.001      11.024
+##  70  1354.923210      33.192       6.443       1.132       1.140       0.000       0.000       0.001      11.022
+##  71  1354.917807      32.822       6.476       1.132       1.140       0.000       0.000       0.001      11.020
+##  72  1354.912506      32.457       6.507       1.132       1.139       0.000       0.000       0.001      11.018
+##  73  1354.907303      32.096       6.537       1.132       1.139       0.000       0.000       0.001      11.015
+##  74  1354.902193      31.740       6.566       1.132       1.139       0.000       0.000       0.001      11.013
+##  75  1354.897169      31.389       6.593       1.132       1.138       0.000       0.000       0.001      11.011
+##  76  1354.892228      31.042       6.619       1.132       1.138       0.000       0.000       0.001      11.009
+##  77  1354.887365      30.698       6.645       1.132       1.138       0.000       0.000       0.001      11.008
+##  78  1354.882575      30.359       6.669       1.132       1.138       0.000       0.000       0.001      11.006
+##  79  1354.877856      30.024       6.692       1.132       1.137       0.000       0.000       0.000      11.004
+##  80  1354.873202      29.692       6.715       1.132       1.137       0.000       0.000       0.000      11.002
+##  81  1354.868612      29.364       6.736       1.131       1.137       0.000       0.000       0.000      11.000
+##  82  1354.864081      29.039       6.757       1.131       1.137       0.000       0.000       0.000      10.999
+##  83  1354.859606      28.718       6.777       1.131       1.137       0.000       0.000       0.000      10.997
+##  84  1354.855184      28.400       6.796       1.131       1.136       0.000       0.000       0.000      10.995
+##  85  1354.850813      28.085       6.814       1.131       1.136       0.000       0.000       0.000      10.994
+##  86  1354.846490      27.774       6.832       1.131       1.136       0.000       0.000       0.000      10.992
+##  87  1354.842212      27.465       6.849       1.131       1.136       0.000       0.000       0.000      10.991
+##  88  1354.837977      27.159       6.866       1.131       1.136       0.000       0.000       0.000      10.989
+##  89  1354.833783      26.856       6.882       1.131       1.135       0.000       0.000       0.000      10.988
+##  90  1354.829627      26.556       6.897       1.131       1.135       0.000       0.000       0.000      10.986
+##  91  1354.825508      26.258       6.912       1.131       1.135       0.000       0.000       0.000      10.985
+##  92  1354.821423      25.963       6.927       1.131       1.135       0.000       0.000       0.000      10.984
+##  93  1354.817371      25.671       6.941       1.131       1.135       0.000       0.000       0.000      10.982
+##  94  1354.813349      25.381       6.954       1.131       1.135       0.000       0.000       0.000      10.981
+##  95  1354.809357      25.093       6.967       1.131       1.135       0.000       0.000       0.000      10.979
+##  96  1354.805391      24.808       6.980       1.131       1.135       0.000       0.000       0.000      10.978
+##  97  1354.801452      24.525       6.992       1.131       1.134       0.000       0.000       0.000      10.977
+##  98  1354.797537      24.244       7.004       1.131       1.134       0.000       0.000       0.000      10.975
+##  99  1354.793645      23.965       7.016       1.131       1.134       0.000       0.000       0.000      10.974
+## 100  1354.789774      23.689       7.027       1.131       1.134       0.000       0.000       0.000      10.973
+## 101  1354.785923      23.414       7.038       1.131       1.134       0.000       0.000       0.000      10.971
+## 102  1354.782091      23.142       7.049       1.131       1.134       0.000       0.000       0.000      10.970
+## 103  1354.778277      22.871       7.059       1.131       1.134       0.000       0.000       0.000      10.969
+## 104  1354.774480      22.603       7.070       1.130       1.134       0.000       0.000       0.000      10.968
+## 105  1354.770697      22.336       7.080       1.130       1.134       0.000       0.000       0.000      10.966
+## 106  1354.766929      22.071       7.089       1.130       1.134       0.000       0.000       0.000      10.965
+## 107  1354.763175      21.808       7.099       1.130       1.134       0.000       0.000       0.000      10.964
+## 108  1354.759432      21.546       7.108       1.130       1.133       0.000       0.000       0.000      10.962
+## 109  1354.755701      21.287       7.117       1.130       1.133       0.000       0.000       0.000      10.961
+## 110  1354.751980      21.029       7.125       1.130       1.133       0.000       0.000       0.000      10.960
+## 111  1354.748268      20.773       7.134       1.130       1.133       0.000       0.000       0.000      10.958
+## 112  1354.744566      20.518       7.142       1.130       1.133       0.000       0.000       0.000      10.957
+## 113  1354.740871      20.265       7.150       1.130       1.133       0.000       0.000       0.000      10.956
+## 114  1354.737183      20.014       7.158       1.130       1.133       0.000       0.000       0.000      10.954
+## 115  1354.733501      19.764       7.166       1.130       1.133       0.000       0.000       0.000      10.953
+## 116  1354.729825      19.516       7.174       1.130       1.133       0.000       0.000       0.000      10.952
+## 117  1354.726154      19.269       7.181       1.130       1.133       0.000       0.000       0.000      10.950
+## 118  1354.722487      19.024       7.189       1.130       1.133       0.000       0.000       0.000      10.949
+## 119  1354.718824      18.780       7.196       1.130       1.133       0.000       0.000       0.000      10.948
+## 120  1354.715164      18.538       7.203       1.130       1.133       0.000       0.000       0.000      10.946
+## 121  1354.711506      18.297       7.209       1.130       1.133       0.000       0.000       0.000      10.945
+## 122  1354.707850      18.058       7.216       1.130       1.133       0.000       0.000       0.000      10.943
+## 123  1354.704196      17.820       7.223       1.130       1.133       0.000       0.000       0.000      10.942
+## 124  1354.700543      17.584       7.229       1.130       1.133       0.000       0.000       0.000      10.940
+## 125  1354.696890      17.349       7.235       1.130       1.133       0.000       0.000       0.000      10.939
+## 126  1354.693238      17.115       7.242       1.130       1.133       0.000       0.000       0.000      10.937
+## 127  1354.689585      16.883       7.248       1.129       1.133       0.000       0.000       0.000      10.936
+## 128  1354.685931      16.652       7.253       1.129       1.133       0.000       0.000       0.000      10.934
+## 129  1354.682277      16.422       7.259       1.129       1.133       0.000       0.000       0.000      10.933
+## 130  1354.678622      16.194       7.265       1.129       1.133       0.000       0.000       0.000      10.931
+## 131  1354.674964      15.967       7.270       1.129       1.133       0.000       0.000       0.000      10.930
+## 132  1354.671305      15.742       7.276       1.129       1.133       0.000       0.000       0.000      10.928
+## 133  1354.667645      15.518       7.281       1.129       1.133       0.000       0.000       0.000      10.927
+## 134  1354.663982      15.295       7.286       1.129       1.133       0.000       0.000       0.000      10.925
+## 135  1354.660316      15.074       7.291       1.129       1.133       0.000       0.000       0.000      10.923
+## 136  1354.656648      14.854       7.296       1.129       1.133       0.000       0.000       0.000      10.922
+## 137  1354.652978      14.636       7.301       1.129       1.133       0.000       0.000       0.000      10.920
+## 138  1354.649304      14.418       7.306       1.129       1.133       0.000       0.000       0.000      10.919
+## 139  1354.645629      14.203       7.310       1.129       1.133       0.000       0.000       0.000      10.917
+## 140  1354.641950      13.988       7.315       1.129       1.133       0.000       0.000       0.000      10.915
+## 141  1354.638268      13.775       7.319       1.129       1.133       0.000       0.000       0.000      10.913
+## 142  1354.634584      13.564       7.324       1.129       1.133       0.000       0.000       0.000      10.912
+## 143  1354.630898      13.353       7.328       1.129       1.133       0.000       0.000       0.000      10.910
+## 144  1354.627208      13.145       7.332       1.129       1.133       0.000       0.000       0.000      10.908
+## 145  1354.623517      12.937       7.336       1.129       1.133       0.000       0.000       0.000      10.906
+## 146  1354.619823      12.731       7.340       1.129       1.133       0.000       0.000       0.000      10.904
+## 147  1354.616127      12.527       7.344       1.129       1.133       0.000       0.000       0.000      10.903
+## 148  1354.612429      12.324       7.347       1.129       1.133       0.000       0.000       0.000      10.901
+## 149  1354.608730      12.122       7.351       1.129       1.133       0.000       0.000       0.000      10.899
+## 150  1354.605029      11.922       7.354       1.129       1.133       0.000       0.000       0.000      10.897
+## 151  1354.601327      11.724       7.358       1.128       1.133       0.000       0.000       0.000      10.895
+## 152  1354.597625      11.527       7.361       1.128       1.133       0.000       0.000       0.000      10.893
+## 153  1354.593922      11.331       7.364       1.128       1.133       0.000       0.000       0.000      10.891
+## 154  1354.590220      11.137       7.367       1.128       1.133       0.000       0.000       0.000      10.889
+## 155  1354.586518      10.945       7.371       1.128       1.134       0.000       0.000       0.000      10.887
+## 156  1354.582817      10.754       7.373       1.128       1.134       0.000       0.000       0.000      10.885
+## 157  1354.579118      10.564       7.376       1.128       1.134       0.000       0.000       0.000      10.883
+## 158  1354.575420      10.377       7.379       1.128       1.134       0.000       0.000       0.000      10.881
+## 159  1354.571725      10.191       7.382       1.128       1.134       0.000       0.000       0.000      10.879
+## 160  1354.568034      10.006       7.384       1.128       1.134       0.000       0.000       0.000      10.877
+## 161  1354.564346       9.823       7.387       1.128       1.134       0.000       0.000       0.000      10.875
+## 162  1354.560662       9.642       7.389       1.128       1.134       0.000       0.000       0.000      10.872
+## 163  1354.556984       9.463       7.392       1.128       1.134       0.000       0.000       0.000      10.870
+## 164  1354.553311       9.285       7.394       1.128       1.134       0.000       0.000       0.000      10.868
+## 165  1354.549644       9.109       7.396       1.128       1.134       0.000       0.000       0.000      10.866
+## 166  1354.545985       8.934       7.398       1.128       1.134       0.000       0.000       0.000      10.864
+## 167  1354.542334       8.762       7.400       1.128       1.134       0.000       0.000       0.000      10.862
+## 168  1354.538692       8.591       7.402       1.128       1.135       0.000       0.000       0.000      10.859
+## 169  1354.535059       8.422       7.404       1.128       1.135       0.000       0.000       0.000      10.857
+## 170  1354.531436       8.255       7.405       1.128       1.135       0.000       0.000       0.000      10.855
+## 171  1354.527825       8.090       7.407       1.128       1.135       0.000       0.000       0.000      10.852
+## 172  1354.524226       7.926       7.408       1.128       1.135       0.000       0.000       0.000      10.850
+## 173  1354.520639       7.764       7.410       1.128       1.135       0.000       0.000       0.000      10.848
+## 174  1354.517067       7.604       7.411       1.128       1.135       0.000       0.000       0.000      10.845
+## 175  1354.513509       7.446       7.413       1.127       1.135       0.000       0.000       0.000      10.843
+## 176  1354.509967       7.290       7.414       1.127       1.135       0.000       0.000       0.000      10.841
+## 177  1354.506442       7.136       7.415       1.127       1.135       0.000       0.000       0.000      10.838
+## 178  1354.502934       6.984       7.416       1.127       1.136       0.000       0.000       0.000      10.836
+## 179  1354.499445       6.834       7.417       1.127       1.136       0.000       0.000       0.000      10.834
+## 180  1354.495975       6.685       7.418       1.127       1.136       0.000       0.000       0.000      10.831
+## 181  1354.492525       6.539       7.419       1.127       1.136       0.000       0.000       0.000      10.829
+## 182  1354.489097       6.395       7.420       1.127       1.136       0.000       0.000       0.000      10.826
+## 183  1354.485691       6.252       7.420       1.127       1.136       0.000       0.000       0.000      10.824
+## 184  1354.482308       6.112       7.421       1.127       1.136       0.000       0.000       0.000      10.822
+## 185  1354.478950       5.973       7.422       1.127       1.136       0.000       0.000       0.000      10.819
+## 186  1354.475616       5.837       7.422       1.127       1.137       0.000       0.000       0.000      10.817
+## 187  1354.472309       5.703       7.423       1.127       1.137       0.000       0.000       0.000      10.814
+## 188  1354.469029       5.570       7.423       1.127       1.137       0.000       0.000       0.000      10.812
+## 189  1354.465776       5.440       7.423       1.127       1.137       0.000       0.000       0.000      10.809
+## 190  1354.462552       5.311       7.423       1.127       1.137       0.000       0.000       0.000      10.807
+## 191  1354.459358       5.185       7.424       1.127       1.137       0.000       0.000       0.000      10.805
+## 192  1354.456195       5.061       7.424       1.127       1.137       0.000       0.000       0.000      10.802
+## 193  1354.453062       4.939       7.424       1.127       1.137       0.000       0.000       0.000      10.800
+## 194  1354.449962       4.819       7.424       1.127       1.137       0.000       0.000       0.000      10.797
+## 195  1354.446895       4.700       7.424       1.127       1.138       0.000       0.000       0.000      10.795
+## 196  1354.443862       4.584       7.424       1.127       1.138       0.000       0.000       0.000      10.792
+## 197  1354.440863       4.470       7.424       1.127       1.138       0.000       0.000       0.000      10.790
+## 198  1354.437899       4.358       7.423       1.127       1.138       0.000       0.000       0.000      10.788
+## 199  1354.434971       4.248       7.423       1.127       1.138       0.000       0.000       0.000      10.785
+## 200  1354.432079       4.140       7.423       1.127       1.138       0.000       0.000       0.000      10.783
+## Timings:
+## SpATS 22.454 seconds
+## All process 23.063 seconds
+## 
+## Spatial analysis of trials with splines 
+## 
+## Response:                   variable  
+## Genotypes (as random):      germplasm 
+## Spatial:                    ~PSANOVA(col, row, nseg = c(nlevels(data_tmp$X), nlevels(data_tmp$Y)))
+## Random:                     ~col_f + row_f
+## 
+## 
+## Number of observations:        198
+## Number of missing data:        13
+## Effective dimension:           28.61
+## Deviance:                      1354.432
+## 
+## Dimensions:
+##                   Effective     Model     Nominal     Ratio     Type
+## Intercept               1.0         1           1      1.00        F
+## germplasm               4.1       184         183      0.02        R
+## col_f                   7.4        54          52      0.14        R
+## row_f                   1.1         4           2      0.56        R
+## col                     1.0         1           1      1.00        S
+## row                     1.0         1           1      1.00        S
+## rowcol                  1.0         1           1      1.00        S
+## f(col)                  1.1        55          55      0.02        S
+## f(row)                  0.0         5           5      0.00        S
+## f(col):row              0.0        55          55      0.00        S
+## col:f(row)              0.0         5           5      0.00        S
+## f(col):f(row)          10.8       275         275      0.04        S
+##                                                                     
+## Total                  28.6       641         636      0.04         
+## Residual              169.4                                         
+## Nobs                    198                                         
+## 
+## Type codes: F &#39;Fixed&#39;    R &#39;Random&#39;    S &#39;Smooth/Semiparametric&#39;
+## 
+## 
+## Spatial analysis of trials with splines 
+## 
+## Response:                   variable  
+## Genotypes (as random):      germplasm 
+## Spatial:                    ~PSANOVA(col, row, nseg = c(nlevels(data_tmp$X), nlevels(data_tmp$Y)))
+## Random:                     ~col_f + row_f
+## 
+## 
+## Number of observations:        198
+## Number of missing data:        13
+## Effective dimension:           28.61
+## Deviance:                      1354.432
+## 
+## Dimensions:
+##                   Effective     Model     Nominal     Ratio     Type
+## Intercept               1.0         1           1      1.00        F
+## germplasm               4.1       184         183      0.02        R
+## col_f                   7.4        54          52      0.14        R
+## row_f                   1.1         4           2      0.56        R
+## col                     1.0         1           1      1.00        S
+## row                     1.0         1           1      1.00        S
+## rowcol                  1.0         1           1      1.00        S
+## f(col)                  1.1        55          55      0.02        S
+## f(row)                  0.0         5           5      0.00        S
+## f(col):row              0.0        55          55      0.00        S
+## col:f(row)              0.0         5           5      0.00        S
+## f(col):f(row)          10.8       275         275      0.04        S
+##                                                                     
+## Total                  28.6       641         636      0.04         
+## Residual              169.4                                         
+## Nobs                    198                                         
+## 
+## Type codes: F &#39;Fixed&#39;    R &#39;Random&#39;    S &#39;Smooth/Semiparametric&#39;</code></pre>
+<p><code>out_spatial</code> is a list containing two elements :</p>
+<ul>
+<li><code>info</code> : a list with variable and data</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_spatial<span class="op">$</span>info<span class="op">$</span>variable</code></pre>
+<pre><code>## [1] &quot;y1&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(out_spatial<span class="op">$</span>info<span class="op">$</span>data)</code></pre>
+<pre><code>##                   seed_lot location year germplasm block X Y    y1
+## 1   germ-1_loc-1_2018_0001    loc-1 2018    germ-1     1 1 1 36.20
+## 2 germ-108_loc-1_2018_0001    loc-1 2018  germ-108     1 2 1 38.55
+## 3 germ-119_loc-1_2018_0001    loc-1 2018  germ-119     1 3 1 38.80
+## 4 germ-130_loc-1_2018_0001    loc-1 2018  germ-130     1 4 1    NA
+## 5 germ-118_loc-1_2018_0001    loc-1 2018  germ-118     1 5 1 48.00
+## 6 germ-120_loc-1_2018_0001    loc-1 2018  germ-120     1 6 1 78.85</code></pre>
+<ul>
+<li><code>model</code> a list with four elements :
+<ul>
+<li><code>model</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_spatial<span class="op">$</span>model<span class="op">$</span>model</code></pre>
+<pre><code>## 
+## Spatial analysis of trials with splines 
+## 
+## Response:                   variable  
+## Genotypes (as random):      germplasm 
+## Spatial:                    ~PSANOVA(col, row, nseg = c(nlevels(data_tmp$X), nlevels(data_tmp$Y)))
+## Random:                     ~col_f + row_f
+## 
+## 
+## Number of observations:        198
+## Number of missing data:        13
+## Effective dimension:           28.61
+## Deviance:                      1354.432</code></pre>
+<ul>
+<li><code>summary</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_spatial<span class="op">$</span>model<span class="op">$</span>summary</code></pre>
+<pre><code>## 
+## Spatial analysis of trials with splines 
+## 
+## Response:                   variable  
+## Genotypes (as random):      germplasm 
+## Spatial:                    ~PSANOVA(col, row, nseg = c(nlevels(data_tmp$X), nlevels(data_tmp$Y)))
+## Random:                     ~col_f + row_f
+## 
+## 
+## Number of observations:        198
+## Number of missing data:        13
+## Effective dimension:           28.61
+## Deviance:                      1354.432
+## 
+## Dimensions:
+##                   Effective     Model     Nominal     Ratio     Type
+## Intercept               1.0         1           1      1.00        F
+## germplasm               4.1       184         183      0.02        R
+## col_f                   7.4        54          52      0.14        R
+## row_f                   1.1         4           2      0.56        R
+## col                     1.0         1           1      1.00        S
+## row                     1.0         1           1      1.00        S
+## rowcol                  1.0         1           1      1.00        S
+## f(col)                  1.1        55          55      0.02        S
+## f(row)                  0.0         5           5      0.00        S
+## f(col):row              0.0        55          55      0.00        S
+## col:f(row)              0.0         5           5      0.00        S
+## f(col):f(row)          10.8       275         275      0.04        S
+##                                                                     
+## Total                  28.6       641         636      0.04         
+## Residual              169.4                                         
+## Nobs                    198                                         
+## 
+## Type codes: F &#39;Fixed&#39;    R &#39;Random&#39;    S &#39;Smooth/Semiparametric&#39;</code></pre>
+<ul>
+<li><code>var_res</code> the variance of the residuals</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">out_spatial<span class="op">$</span>model<span class="op">$</span>df_residual</code></pre>
+<pre><code>## [1] 169.4</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">out_spatial<span class="op">$</span>model<span class="op">$</span>MSerror</code></pre>
+<pre><code>## [1] 7.995467</code></pre></li>
+</ul>
+</div>
+<div id="check-and-visualize-model-outputs-1" class="section level4">
+<h4><span class="header-section-number">3.5.4.5</span> Check and visualize model outputs</h4>
+<p>The tests to check the model are explained in section <a href="intro-agro.html#check-model-freq">3.1.2.1.2</a>.</p>
+<div id="check-the-model-1" class="section level5">
+<h5><span class="header-section-number">3.5.4.5.1</span> Check the model</h5>
+<pre class="sourceCode r"><code class="sourceCode r">out_check_spatial =<span class="st"> </span><span class="kw">check_model</span>(out_spatial)</code></pre>
+<p><code>out_check_spatial</code> is a list containing two elements :</p>
+<ul>
+<li><code>spatial</code> the output from the model</li>
+<li><code>data_ggplot</code> a list containing information for ggplot:
+<ul>
+<li><code>data_ggplot_residuals</code> a list containing :
+<ul>
+<li><code>data_ggplot_normality</code></li>
+<li><code>data_ggplot_skewness_test</code></li>
+<li><code>data_ggplot_kurtosis_test</code></li>
+<li><code>data_ggplot_qqplot</code></li>
+</ul></li>
+<li><code>data_ggplot_variability_repartition_pie</code></li>
+</ul></li>
+</ul>
+</div>
+<div id="visualize-outputs-1" class="section level5">
+<h5><span class="header-section-number">3.5.4.5.2</span> Visualize outputs</h5>
+<p>Once the computation is done, you can visualize the results with <code>plot</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_spatial =<span class="st"> </span><span class="kw">plot</span>(out_check_spatial)</code></pre>
+<p><code>p_out_check_spatial</code> is a list with:</p>
+<ul>
+<li><code>residuals</code>
+<ul>
+<li><code>histogram</code> : histogram with the distribution of the residuals</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_spatial<span class="op">$</span>residuals<span class="op">$</span>histogram</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<img src="PPBstats_book_files/figure-html/unnamed-chunk-113-1.png" width="672" />
+<ul>
+<li><code>qqplot</code></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_spatial<span class="op">$</span>residuals<span class="op">$</span>qqplot</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p></li>
+<li><p><code>variability_repartition</code> : pie with repartition of variance for each factor</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_spatial<span class="op">$</span>variability_repartition</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-and-visualize-mean-comparisons-1" class="section level4">
+<h4><span class="header-section-number">3.5.4.6</span> Get and visualize mean comparisons</h4>
+<p>The method to compute mean comparison are explained in section <a href="intro-agro.html#mean-comp-check-freq">3.1.2.1.3</a>.</p>
+</div>
+<div id="get-mean-comparisons-1" class="section level4">
+<h4><span class="header-section-number">3.5.4.7</span> Get mean comparisons</h4>
+<p>Get mean comparisons with <code>mean_comparisons</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_mean_comparisons_spatial =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_spatial, <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>)</code></pre>
+<p><code>out_mean_comparisons_spatial</code> is a list of two elements:</p>
+<ul>
+<li><code>info</code> : a list with variable and data</li>
+<li><code>data_ggplot_LSDbarplot_germplasm</code></li>
+</ul>
+</div>
+<div id="visualize-mean-comparisons-1" class="section level4">
+<h4><span class="header-section-number">3.5.4.8</span> Visualize mean comparisons</h4>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_mean_comparisons_spatial =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_spatial)</code></pre>
+<p><code>p_out_mean_comparisons_spatial</code> is a list of two elements</p>
+<ul>
+<li><code>germplasm_blup</code> whih represent the BLUPs with their confidence intervalle</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_mean_comparisons_spatial<span class="op">$</span>germplasm_blup</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<ul>
+<li><code>germplasm_barplot</code>.
+For each element of the list, there are as many graph as needed with <code>nb_parameters_per_plot</code> parameters per graph.
+Letters are displayed on each bar. Parameters that do not share the same letters are different regarding type I error (alpha) and alpha correction.
+The error I (alpha) and the alpha correction are displayed in the title.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">pg =<span class="st"> </span>p_out_mean_comparisons_spatial<span class="op">$</span>germplasm_barplot
+pg<span class="op">$</span><span class="st">`</span><span class="dt">23</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+</div>
+<div id="apply-the-workflow-to-several-variables" class="section level4">
+<h4><span class="header-section-number">3.5.4.9</span> Apply the workflow to several variables</h4>
+<p>If you wish to apply the spatial workflow to several variables, you can use <code>lapply</code> with the following code :</p>
+<pre class="sourceCode r"><code class="sourceCode r">workflow_spatial =<span class="st"> </span><span class="cf">function</span>(x, data){
+  out_spatial =<span class="st"> </span><span class="kw">model_spatial</span>(<span class="dt">data =</span> data, <span class="dt">variable =</span> x)
+  
+  out_check_spatial =<span class="st"> </span><span class="kw">check_model</span>(out_spatial)
+  p_out_check_spatial =<span class="st"> </span><span class="kw">plot</span>(out_check_spatial)
+  
+  out_mean_comparisons_spatial =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_spatial, <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>)
+  p_out_mean_comparisons_spatial =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_spatial)
+  
+  out =<span class="st"> </span><span class="kw">list</span>(
+    <span class="dt">out_spatial =</span> out_spatial,
+    <span class="dt">out_check_spatial =</span> out_check_spatial,
+    <span class="dt">p_out_check_spatial =</span> p_out_check_spatial,
+    <span class="dt">out_mean_comparisons_spatial =</span> out_mean_comparisons_spatial,
+    <span class="dt">p_out_mean_comparisons_spatial =</span> p_out_mean_comparisons_spatial
+    )
+  <span class="kw">return</span>(out)
+}
+
+<span class="co">## Not run </span>
+<span class="co"># vec_variables = c(&quot;y1&quot;, &quot;y2&quot;, &quot;y3&quot;)</span>
+<span class="co">#</span>
+<span class="co"># out = lapply(vec_variables, workflow_spatial, data)</span>
+<span class="co"># names(out) = vec_variables</span></code></pre>
+
+</div>
+</div>
+<div id="ibd-model" class="section level3">
+<h3><span class="header-section-number">3.5.5</span> Mixted model for incomplete block design (<strong>M5</strong>)</h3>
+<p>!!! TO DO !!!</p>
+<p>The model is based on frequentist statistics (section <a href="intro-agro.html#section-freq">3.1.2.1</a>).
+The tests to check the model are explained in section <a href="intro-agro.html#check-model-freq">3.1.2.1.2</a>.
+The method to compute mean comparison are explained in section <a href="intro-agro.html#mean-comp-check-freq">3.1.2.1.3</a>.</p>
+<p><span class="citation">(Zystro, Colley, and Dawson <a href="#ref-alternative_zystro_2018">2018</a>)</span></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(ibd)</span>
+<span class="co">#data(ibddata)</span>
+<span class="co">#aov.ibd(y~factor(trt)+factor(blk),data=ibddata)</span>
+<span class="co">#contrast=matrix(c(1,-1,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0),nrow=2,byrow=TRUE)</span>
+<span class="co">#aov.ibd(y~factor(trt)+factor(blk),specs=&quot;trt&quot;,data=ibddata,contrast=contrast)</span></code></pre>
+
+</div>
+<div id="model-1" class="section level3">
+<h3><span class="header-section-number">3.5.6</span> Hierarchical Bayesian intra-location model to perform mean comparisons with each farm (<strong>M7a</strong>)</h3>
+<p>At the farm level, the residual has few degrees of freedom, leading to a poor estimation of the residual variance and to a lack of power for comparing populations.
+model_bh_intra_location was implemented to improve efficiency of mean comparisons.
+It is efficient with more than 20 environment (i.e. location <span class="math inline">\(\times\)</span> year) <span class="citation">(Rivière et al. <a href="#ref-riviere_hierarchical_2015">2015</a>)</span>.
+The model is based on bayesian statistics (section <a href="intro-agro.html#section-bayes">3.1.2.2</a>).</p>
+<div id="theory-of-the-model-2" class="section level4">
+<h4><span class="header-section-number">3.5.6.1</span> Theory of the model</h4>
+<p>The experimental design used is satellite and regional farms (<strong>D4</strong>).
+The model is described in <span class="citation">Rivière et al. (<a href="#ref-riviere_hierarchical_2015">2015</a>)</span>.
+We restricted ourselves to analysing values at the plot level (the values may result from the average of individual plants measures).
+The phenotypic value <span class="math inline">\(Y_{ijk}\)</span> for variable <span class="math inline">\(Y\)</span>, germplasm <span class="math inline">\(i\)</span>, environment <span class="math inline">\(j\)</span> and block <span class="math inline">\(k\)</span> is modelled as :</p>
+<p><span class="math inline">\(Y_{ijk} = \mu_{ij} + \beta_{jk} + \varepsilon_{ijk} ; \quad \varepsilon_{ijk} \sim \mathcal{N} (0,\sigma^2_{j})\)</span>,</p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\mu_{ij}\)</span> is the mean of germplasm <span class="math inline">\(i\)</span> in environment <span class="math inline">\(j\)</span> (note that this parameter, which corresponds to an entry, confounds the population effect and the population <span class="math inline">\(\times\)</span> environment effect);</li>
+<li><span class="math inline">\(\beta_{jk}\)</span> is the effect of block <span class="math inline">\(k\)</span> in environment <span class="math inline">\(j\)</span> satisfying the constraint<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> <span class="math inline">\(\sum\limits_{k=1}^K \beta_{jk} = 1\)</span> ;</li>
+<li><span class="math inline">\(\varepsilon_{ijk}\)</span> is the residual error;</li>
+<li><span class="math inline">\(\mathcal{N} (0,\sigma^2_{j})\)</span> denotes normal distribution centred on 0 with variance <span class="math inline">\(\sigma^2_{j}\)</span>, which is specific to environment <span class="math inline">\(j\)</span>.</li>
+</ul>
+<p>We take advantage of the similar structure of the trials in each environment of the network to assume that trial residual variances come from a common distribution :</p>
+<p><span class="math inline">\(\sigma^2_{j} \sim \frac{1}{Gamma(\nu,\rho)}\)</span>,</p>
+<p>where <span class="math inline">\(\nu\)</span> and <span class="math inline">\(\rho\)</span> are unknown parameters.
+Because of the low number of residual degrees of freedom for each farm, we use a hierarchical approach in order to assess mean differences on farm.
+For that, we place vague prior distributions on the hyperparameters <span class="math inline">\(\nu\)</span> and <span class="math inline">\(\rho\)</span> :</p>
+<p><span class="math inline">\(\nu \sim Uniform(\nu_{min},\nu_{max}) ; \quad \rho \sim Gamma(10^{-6},10^{-6})\)</span>.</p>
+<p>In other words, the residual variance of a trial in a given environment is estimated using all the informations available on the network rather than using the data from that particular trial only.</p>
+<p>The parameters <span class="math inline">\(\mu_{ij}\)</span> and <span class="math inline">\(\beta_{jk}\)</span> are assumed to follow vague prior distributions too:</p>
+<p><span class="math inline">\(\mu_{ij} \sim \mathcal{N}(\mu_{.j},10^{6}); \quad \beta_{jk} \sim \mathcal{N}(0,10^{6})\)</span>.</p>
+<p>The inverse gamma distribution has a minimum value of 0 (consistent with the definition of a variance) and may have various shapes including asymmetric distributions.
+From an agronomical point of view, the assumption that trial variances are heterogeneous is consistent with organic farming: there are as many environments as farms and farmers leading to a high heterogeneity.
+Environment is here considered in a broad sense: practices (sowing date, sowing density, tilling, etc.), pedo climatic conditions, biotic and abiotic stress, … <span class="citation">(Desclaux et al. <a href="#ref-desclaux_changes_2008">2008</a>)</span>.
+Moreover, the inverse gamma distribution has conjugate properties that facilitate MCMC convergence.
+This model is therefore a good choice based on both agronomic and statistical criteria.</p>
+<p>The residual variance estimated from the controls is assumed to be representative of the residual variance of the other entries.
+Blocks are included in the model only if the trial has blocks.</p>
+</div>
+<div id="steps-with" class="section level4">
+<h4><span class="header-section-number">3.5.6.2</span> Steps with </h4>
+<p>To run model_bh_intra_location, follow these steps (Figure <a href="intro-agro.html#fig:main-workflow">3.2</a>):</p>
+<ul>
+<li>Format the data with <code>format_data_PPBstats()</code></li>
+<li>Run the model with <code>model_bh_intra_location()</code></li>
+<li>Check model outputs with graphs using <code>check_model()</code>to know if you can continue the analysis</li>
+<li>Get mean comparisons for each factor with <code>mean_comparisons()</code> and vizualise it with <code>plot()</code></li>
+</ul>
+</div>
+<div id="format-the-data-6" class="section level4">
+<h4><span class="header-section-number">3.5.6.3</span> Format the data</h4>
+<p>The values for <span class="math inline">\(\mu_{ij}\)</span>, <span class="math inline">\(\beta_{jk}\)</span>, <span class="math inline">\(\epsilon_{ijk}\)</span> and <span class="math inline">\(\sigma_j\)</span> are the real value used to create the simulated dataset.
+This dataset is representative of data obtain in a PPB programme.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(data_model_bh_intra_location)
+data_model_bh_intra_location =<span class="st"> </span><span class="kw">format_data_PPBstats</span>(data_model_bh_intra_location, <span class="dt">type =</span> <span class="st">&quot;data_agro&quot;</span>)</code></pre>
+<pre><code>## Warning in format_data_PPBstats.data_agro(data): Column &quot;long&quot; is needed to
+## get map and not present in data.</code></pre>
+<pre><code>## Warning in format_data_PPBstats.data_agro(data): Column &quot;lat&quot; is needed to
+## get map and not present in data.</code></pre>
+<pre><code>## data has been formated for PPBstats functions.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(data_model_bh_intra_location) <span class="co"># first rows of the data</span></code></pre>
+<pre><code>##                  seed_lot location year germplasm block X Y      tkw
+## 1 germ-25_loc-1_2005_0001    loc-1 2005   germ-25     1 1 a 72.09900
+## 2 germ-26_loc-1_2005_0001    loc-1 2005   germ-26     1 2 b 61.05274
+## 3 germ-27_loc-1_2005_0001    loc-1 2005   germ-27     1 3 c 62.99350
+## 4 germ-28_loc-1_2005_0001    loc-1 2005   germ-28     1 4 d 65.10909
+## 5 germ-25_loc-1_2005_0001    loc-1 2005   germ-25     2 5 e 77.01361
+## 6 germ-26_loc-1_2005_0001    loc-1 2005   germ-26     2 6 f 64.10541
+##     tkw$date    mu_ij beta_jk epsilon_ijk  sigma_j tkw$date_julian
+## 1 2017-07-22 73.37224       0  -1.2732421 1.622339             202
+## 2 2017-07-22 61.61823       0  -0.5654918 1.622339             202
+## 3 2017-07-22 64.31830       0  -1.3248006 1.622339             202
+## 4 2017-07-22 62.57840       0   2.5306946 1.622339             202
+## 5 2017-07-22 73.37224       0   3.6413666 1.622339             202
+## 6 2017-07-22 61.61823       0   2.4871807 1.622339             202</code></pre>
+</div>
+<div id="run-the-model-2" class="section level4">
+<h4><span class="header-section-number">3.5.6.4</span> Run the model</h4>
+<p>To run model model_bh_intra_location on the dataset, used the function <code>model_bh_intra_location()</code>.
+Here it is run on thousand kernel weight (tkw).</p>
+<p>By default, <code>model_bh_intra_location</code> returns posteriors for
+<span class="math inline">\(\mu_{ij}\)</span> (<code>return.mu = TRUE</code>),
+<span class="math inline">\(\beta_{jk}\)</span> (<code>return.beta = TRUE</code>),
+<span class="math inline">\(\sigma_j\)</span> (<code>return.sigma = TRUE</code>),
+<span class="math inline">\(\nu\)</span> (<code>return.nu = TRUE</code>) and
+<span class="math inline">\(\rho\)</span> (<code>return.rho = TRUE</code>).
+You can also get <span class="math inline">\(\epsilon_{ijk}\)</span> value with <code>return.espilon = TRUE</code>.</p>
+<p>DIC criterion is a generalization of the AIC criterion that can be used for hierarchical models <span class="citation">(Spiegelhalter et al. <a href="#ref-spiegelhalter_bayesian_2002">2002</a>)</span>.
+The smaller the DIC value, the better the model <span class="citation">(Plummer <a href="#ref-plummer_penalized_2008">2008</a>)</span>.
+By default, DIC is not displayed, you can ask for this value to compare to other model (<code>DIC = TRUE</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_model_bh_intra_location = model_bh_intra_location(data = data_model_bh_intra_location, variable = &quot;tkw&quot;, return.epsilon = TRUE)</span>
+
+<span class="co"># Compiling model graph</span>
+<span class="co"># Resolving undeclared variables</span>
+<span class="co"># Allocating nodes</span>
+<span class="co"># Graph information:</span>
+<span class="co">#   Observed stochastic nodes: 976</span>
+<span class="co"># Unobserved stochastic nodes: 927</span>
+<span class="co"># Total graph size: 8609</span>
+<span class="co"># </span>
+<span class="co"># Initializing model</span>
+<span class="co"># </span>
+<span class="co"># |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_model_bh_intra_location.RData&quot;</span>) <span class="co"># To save time</span></code></pre>
+<p>You can get information on the environments in the dataset :</p>
+<pre class="sourceCode r"><code class="sourceCode r">out_model_bh_intra_location<span class="op">$</span>vec_env_with_no_data</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">out_model_bh_intra_location<span class="op">$</span>vec_env_with_no_controls</code></pre>
+<pre><code>## [1] &quot;loc-25:2005&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">out_model_bh_intra_location<span class="op">$</span>vec_env_with_controls</code></pre>
+<pre><code>##  [1] &quot;loc-10:2005&quot; &quot;loc-10:2006&quot; &quot;loc-10:2007&quot; &quot;loc-11:2005&quot; &quot;loc-11:2006&quot;
+##  [6] &quot;loc-11:2007&quot; &quot;loc-1:2005&quot;  &quot;loc-1:2006&quot;  &quot;loc-1:2007&quot;  &quot;loc-12:2005&quot;
+## [11] &quot;loc-12:2006&quot; &quot;loc-12:2007&quot; &quot;loc-13:2005&quot; &quot;loc-13:2006&quot; &quot;loc-13:2007&quot;
+## [16] &quot;loc-14:2005&quot; &quot;loc-14:2006&quot; &quot;loc-14:2007&quot; &quot;loc-15:2005&quot; &quot;loc-15:2006&quot;
+## [21] &quot;loc-15:2007&quot; &quot;loc-16:2005&quot; &quot;loc-16:2006&quot; &quot;loc-16:2007&quot; &quot;loc-17:2005&quot;
+## [26] &quot;loc-17:2006&quot; &quot;loc-17:2007&quot; &quot;loc-18:2005&quot; &quot;loc-18:2006&quot; &quot;loc-18:2007&quot;
+## [31] &quot;loc-19:2006&quot; &quot;loc-19:2007&quot; &quot;loc-20:2006&quot; &quot;loc-20:2007&quot; &quot;loc-21:2006&quot;
+## [36] &quot;loc-21:2007&quot; &quot;loc-2:2005&quot;  &quot;loc-2:2006&quot;  &quot;loc-2:2007&quot;  &quot;loc-22:2006&quot;
+## [41] &quot;loc-22:2007&quot; &quot;loc-23:2006&quot; &quot;loc-23:2007&quot; &quot;loc-3:2005&quot;  &quot;loc-3:2006&quot; 
+## [46] &quot;loc-3:2007&quot;  &quot;loc-4:2005&quot;  &quot;loc-4:2006&quot;  &quot;loc-4:2007&quot;  &quot;loc-5:2006&quot; 
+## [51] &quot;loc-6:2006&quot;  &quot;loc-6:2007&quot;  &quot;loc-7:2006&quot;  &quot;loc-7:2007&quot;  &quot;loc-8:2006&quot; 
+## [56] &quot;loc-9:2005&quot;  &quot;loc-9:2006&quot;  &quot;loc-9:2007&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">out_model_bh_intra_location<span class="op">$</span>vec_env_RF</code></pre>
+<pre><code>##  [1] &quot;loc-1:2005&quot; &quot;loc-1:2006&quot; &quot;loc-1:2007&quot; &quot;loc-2:2005&quot; &quot;loc-2:2006&quot;
+##  [6] &quot;loc-2:2007&quot; &quot;loc-3:2005&quot; &quot;loc-3:2006&quot; &quot;loc-3:2007&quot; &quot;loc-4:2005&quot;
+## [11] &quot;loc-4:2006&quot; &quot;loc-4:2007&quot; &quot;loc-5:2006&quot; &quot;loc-6:2006&quot; &quot;loc-6:2007&quot;
+## [16] &quot;loc-7:2006&quot; &quot;loc-7:2007&quot; &quot;loc-8:2006&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">out_model_bh_intra_location<span class="op">$</span>vec_env_SF</code></pre>
+<pre><code>##  [1] &quot;loc-10:2005&quot; &quot;loc-10:2006&quot; &quot;loc-10:2007&quot; &quot;loc-11:2005&quot; &quot;loc-11:2006&quot;
+##  [6] &quot;loc-11:2007&quot; &quot;loc-12:2005&quot; &quot;loc-12:2006&quot; &quot;loc-12:2007&quot; &quot;loc-13:2005&quot;
+## [11] &quot;loc-13:2006&quot; &quot;loc-13:2007&quot; &quot;loc-14:2005&quot; &quot;loc-14:2006&quot; &quot;loc-14:2007&quot;
+## [16] &quot;loc-15:2005&quot; &quot;loc-15:2006&quot; &quot;loc-15:2007&quot; &quot;loc-16:2005&quot; &quot;loc-16:2006&quot;
+## [21] &quot;loc-16:2007&quot; &quot;loc-17:2005&quot; &quot;loc-17:2006&quot; &quot;loc-17:2007&quot; &quot;loc-18:2005&quot;
+## [26] &quot;loc-18:2006&quot; &quot;loc-18:2007&quot; &quot;loc-19:2006&quot; &quot;loc-19:2007&quot; &quot;loc-20:2006&quot;
+## [31] &quot;loc-20:2007&quot; &quot;loc-21:2006&quot; &quot;loc-21:2007&quot; &quot;loc-22:2006&quot; &quot;loc-22:2007&quot;
+## [36] &quot;loc-23:2006&quot; &quot;loc-23:2007&quot; &quot;loc-9:2005&quot;  &quot;loc-9:2006&quot;  &quot;loc-9:2007&quot;</code></pre>
+<p>Below is an example with low <code>nb_iterations</code> (see section <a href="intro-agro.html#section-bayes">3.1.2.2</a> about the number of iterations):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_model_bh_intra_location_bis = model_bh_intra_location(data = data_model_bh_intra_location, variable = &quot;tkw&quot;, nb_iteration = 5000)</span>
+
+<span class="co"># Compiling model graph</span>
+<span class="co"># Resolving undeclared variables</span>
+<span class="co"># Allocating nodes</span>
+<span class="co"># Graph information:</span>
+<span class="co">#   Observed stochastic nodes: 976</span>
+<span class="co"># Unobserved stochastic nodes: 927</span>
+<span class="co"># Total graph size: 8609</span>
+<span class="co"># </span>
+<span class="co"># Initializing model</span>
+<span class="co"># </span>
+<span class="co"># |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># |**************************************************| 100%</span>
+<span class="co"># Warning message:</span>
+<span class="co">#   In model_bh_intra_location(data = data_model_bh_intra_location, variable = &quot;tkw&quot;, nb_iteration = 5000) :</span>
+<span class="co">#   nb_iterations is below 20 000, which seems small to get convergence in the MCMC.</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_model_bh_intra_location_bis.RData&quot;</span>) <span class="co"># To save time</span></code></pre>
+</div>
+<div id="check-and-visualize-model-outputs-2" class="section level4">
+<h4><span class="header-section-number">3.5.6.5</span> Check and visualize model outputs</h4>
+<p>The tests to check the model are explained in section <a href="intro-agro.html#check-model-bayes">3.1.2.2.2</a>.</p>
+<div id="check-the-model-2" class="section level5">
+<h5><span class="header-section-number">3.5.6.5.1</span> Check the model</h5>
+<p>Once the model has been run, it is necessary to check if the outputs can be taken with confidence.
+This step is needed before going ahead in the analysis (in fact the object used in the next functions must come from <code>check_model</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_check_model_bh_intra_location = check_model(out_model_bh_intra_location)</span>
+
+<span class="co"># The Gelman-Rubin test is running for each parameter ...</span>
+<span class="co"># The two MCMC for each parameter converge thanks to the Gelman-Rubin test.</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_check_model_bh_intra_location.RData&quot;</span>) <span class="co"># To save time</span></code></pre>
+<p><code>out_check_model_bh_intra_location</code> is a list containing:</p>
+<ul>
+<li><code>MCMC</code> : a data fame resulting from the concatenation of the two MCMC for each parameter. This object can be used for further analysis. There are as many columns as parameters and as many rows as <code>iterations/thin</code> (the <code>thin</code> value is 10 by default in the models).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(out_check_model_bh_intra_location<span class="op">$</span>MCMC)</code></pre>
+<pre><code>## [1] 20000   945</code></pre>
+<ul>
+<li><p><code>MCMC_conv_not_ok</code>: a data fame resulting from the concatenation of the two MCMC for each parameter for environments where some parameters did not converge for mu and beta</p></li>
+<li><p><code>data_env_with_no_controls</code> : data frame with environnements without controls</p></li>
+<li><p><code>data_env_whose_param_did_not_converge</code> : a list with data frame with environments where some parameters did not converge for mu and beta</p></li>
+<li><code>data_ggplot</code> : a list containing information for ggplot:
+<ul>
+<li><code>sigma_j</code></li>
+<li><code>mu_ij</code></li>
+<li><code>beta_jk</code></li>
+<li><code>sigma_j_2</code></li>
+<li><code>epsilon_ijk</code></li>
+</ul></li>
+</ul>
+<p>When considering <code>out_model_bh_intra_location_bis</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_check_model_bh_intra_location_bis = check_model(out_model_bh_intra_location_bis)</span>
+
+<span class="co"># The Gelman-Rubin test is running for each parameter ...</span>
+<span class="co"># The two MCMC of the following parameters do not converge thanks to the Gelman-Rubin test : # mu[germ-20,loc-15:2006], nu, rho, sigma[loc-15:2006]. Therefore, they are not present in MCMC output.</span>
+<span class="co"># MCMC are updated, the following environment were deleted : loc-15:2006</span>
+<span class="co"># data_env_whose_param_did_not_converge contains the raw data for these environments.</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_check_model_bh_intra_location_bis.RData&quot;</span>) <span class="co"># To save time</span></code></pre>
+</div>
+<div id="visualize-outputs-2" class="section level5">
+<h5><span class="header-section-number">3.5.6.5.2</span> Visualize outputs</h5>
+<p>Once the computation is finished, you can visualize the results with </p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location =<span class="st"> </span><span class="kw">plot</span>(out_check_model_bh_intra_location)</code></pre>
+<pre><code>## Distribution of sigma_j in the inverse Gamme distribution are done.</code></pre>
+<pre><code>## The mu_ij posterior distributions are done.</code></pre>
+<pre><code>## The beta_jk posterior distributions are done.</code></pre>
+<pre><code>## The sigma_j posterior distributions are done.</code></pre>
+<pre><code>## The standardised residuals distributions are done.</code></pre>
+<p><code>p_out_check_model_bh_intra_location</code> is a list with:</p>
+<ul>
+<li><code>sigma_j_gamma</code> : mean of each <code>sigma_j</code> displayed on the Inverse Gamma distribution. The first graph represents all the <code>sigma_j</code>, the other graph represent the same information divided into several graphs (based on argument <code>nb_parameters_per_plot</code>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>sigma_j_gamma[[<span class="dv">1</span>]]</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>sigma_j_gamma[[<span class="dv">2</span>]]</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-130-2.png" width="672" /></p>
+<ul>
+<li><code>mu_ij</code> : distribution of each <code>mu_ij</code> in a list with as many elements as environment. For each element of the list, there are as many graph as needed with <code>nb_parameters_per_plot</code> <code>mu_ij</code> per graph.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(p_out_check_model_bh_intra_location<span class="op">$</span>mu_ij)</code></pre>
+<pre><code>##  [1] &quot;loc-10:2005&quot; &quot;loc-10:2006&quot; &quot;loc-10:2007&quot; &quot;loc-11:2005&quot; &quot;loc-11:2006&quot;
+##  [6] &quot;loc-11:2007&quot; &quot;loc-1:2005&quot;  &quot;loc-1:2006&quot;  &quot;loc-1:2007&quot;  &quot;loc-12:2005&quot;
+## [11] &quot;loc-12:2006&quot; &quot;loc-12:2007&quot; &quot;loc-13:2005&quot; &quot;loc-13:2006&quot; &quot;loc-13:2007&quot;
+## [16] &quot;loc-14:2005&quot; &quot;loc-14:2006&quot; &quot;loc-14:2007&quot; &quot;loc-15:2005&quot; &quot;loc-15:2006&quot;
+## [21] &quot;loc-15:2007&quot; &quot;loc-16:2005&quot; &quot;loc-16:2006&quot; &quot;loc-16:2007&quot; &quot;loc-17:2005&quot;
+## [26] &quot;loc-17:2006&quot; &quot;loc-17:2007&quot; &quot;loc-18:2005&quot; &quot;loc-18:2006&quot; &quot;loc-18:2007&quot;
+## [31] &quot;loc-19:2006&quot; &quot;loc-19:2007&quot; &quot;loc-20:2006&quot; &quot;loc-20:2007&quot; &quot;loc-21:2006&quot;
+## [36] &quot;loc-21:2007&quot; &quot;loc-2:2005&quot;  &quot;loc-2:2006&quot;  &quot;loc-2:2007&quot;  &quot;loc-22:2006&quot;
+## [41] &quot;loc-22:2007&quot; &quot;loc-23:2006&quot; &quot;loc-23:2007&quot; &quot;loc-3:2005&quot;  &quot;loc-3:2006&quot; 
+## [46] &quot;loc-3:2007&quot;  &quot;loc-4:2005&quot;  &quot;loc-4:2006&quot;  &quot;loc-4:2007&quot;  &quot;loc-5:2006&quot; 
+## [51] &quot;loc-6:2006&quot;  &quot;loc-6:2007&quot;  &quot;loc-7:2006&quot;  &quot;loc-7:2007&quot;  &quot;loc-8:2006&quot; 
+## [56] &quot;loc-9:2005&quot;  &quot;loc-9:2006&quot;  &quot;loc-9:2007&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(p_out_check_model_bh_intra_location<span class="op">$</span>mu_ij<span class="op">$</span><span class="st">`</span><span class="dt">loc-10:2005</span><span class="st">`</span>)</code></pre>
+<pre><code>## [1] &quot;1&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>mu_ij<span class="op">$</span><span class="st">`</span><span class="dt">loc-10:2005</span><span class="st">`</span><span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<ul>
+<li><code>beta_jk</code> : distribution of each <code>beta_jk</code> in a list with as many elements as environment. For each element of the list, there are as many graph as needed with <code>nb_parameters_per_plot</code> <code>beta_jk</code> per graph.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(p_out_check_model_bh_intra_location<span class="op">$</span>beta_jk)</code></pre>
+<pre><code>##  [1] &quot;loc-1:2005&quot; &quot;loc-1:2006&quot; &quot;loc-1:2007&quot; &quot;loc-2:2005&quot; &quot;loc-2:2006&quot;
+##  [6] &quot;loc-2:2007&quot; &quot;loc-3:2005&quot; &quot;loc-3:2006&quot; &quot;loc-3:2007&quot; &quot;loc-4:2005&quot;
+## [11] &quot;loc-4:2006&quot; &quot;loc-4:2007&quot; &quot;loc-5:2006&quot; &quot;loc-6:2006&quot; &quot;loc-6:2007&quot;
+## [16] &quot;loc-7:2006&quot; &quot;loc-7:2007&quot; &quot;loc-8:2006&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(p_out_check_model_bh_intra_location<span class="op">$</span>beta_jk<span class="op">$</span><span class="st">`</span><span class="dt">loc-1:2005</span><span class="st">`</span>)</code></pre>
+<pre><code>## [1] &quot;1&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>beta_jk<span class="op">$</span><span class="st">`</span><span class="dt">loc-1:2005</span><span class="st">`</span><span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<ul>
+<li><code>sigma_j</code> : distribution of each <code>sigma_j</code>. There are as many graph as needed with <code>nb_parameters_per_plot</code> <code>sigma_j</code> per graph.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(p_out_check_model_bh_intra_location<span class="op">$</span>sigma_j)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>sigma_j[[<span class="dv">1</span>]]</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<ul>
+<li><code>epsilon_ijk</code> : standardised residuals distribution.
+If the model went well it should be between -2 and 2.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>epsilon_ijk</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<ul>
+<li><code>mcmc_not_converge_traceplot_density</code> : a list with the plots of trace and density to check the convergence of the two MCMC only for chains that are not converging detected by the Gelman-Rubin test.
+If all the chains converge, it is NULL</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location<span class="op">$</span>mcmc_not_converge_traceplot_density</code></pre>
+<pre><code>## NULL</code></pre>
+<p>Here all the parameters converged.</p>
+<p>When considering <code>p_out_check_model_bh_intra_location_bis</code>, there is no convergence because the MCMC are too small.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location_bis =<span class="st"> </span><span class="kw">plot</span>(out_check_model_bh_intra_location_bis)</code></pre>
+<pre><code>## Distribution of sigma_j in the inverse Gamme distribution are done.</code></pre>
+<pre><code>## The mu_ij posterior distributions are done.</code></pre>
+<pre><code>## The beta_jk posterior distributions are done.</code></pre>
+<pre><code>## The sigma_j posterior distributions are done.</code></pre>
+<pre><code>## Trace and density plot for MCMC that did not converged are done.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_out_check_model_bh_intra_location_bis<span class="op">$</span>mcmc_not_converge_traceplot_density<span class="op">$</span><span class="st">`</span><span class="dt">sigma</span><span class="ch">\\</span><span class="dt">[loc-15:2006</span><span class="st">`</span></code></pre>
+<pre><code>## $traceplot</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<pre><code>## 
+## $density</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-136-2.png" width="672" /></p>
+<p>Just for fun, you can compare the posterior medians and the arithmetic means for the <code>mu_ij</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">MCMC =<span class="st"> </span>out_check_model_bh_intra_location<span class="op">$</span>MCMC
+effects =<span class="st"> </span><span class="kw">apply</span>(MCMC, <span class="dv">2</span>, median)
+mu_ij_estimated =<span class="st"> </span>effects[<span class="kw">grep</span>(<span class="st">&quot;mu&quot;</span>,<span class="kw">names</span>(effects))]
+<span class="kw">names</span>(mu_ij_estimated) =<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">names</span>(mu_ij_estimated), 
+                                <span class="cf">function</span>(x){  <span class="kw">sub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">]&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">sub</span>(<span class="st">&quot;mu</span><span class="ch">\\</span><span class="st">[&quot;</span>, <span class="st">&quot;&quot;</span>, x)) } 
+                                )
+
+d =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data_model_bh_intra_location, location <span class="op">!=</span><span class="st"> &quot;loc-24&quot;</span>)
+d =<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(d, location <span class="op">!=</span><span class="st"> &quot;loc-25&quot;</span>)
+d =<span class="st"> </span><span class="kw">droplevels</span>(d)
+environment =<span class="st"> </span><span class="kw">paste</span>(<span class="kw">as.character</span>(d<span class="op">$</span>location), <span class="kw">as.character</span>(d<span class="op">$</span>year), <span class="dt">sep =</span> <span class="st">&quot;:&quot;</span>)
+d<span class="op">$</span>entry =<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste</span>(<span class="kw">as.character</span>(d<span class="op">$</span>germplasm), environment, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>))
+mu_ij =<span class="st"> </span><span class="kw">tapply</span>(d<span class="op">$</span>mu_ij, d<span class="op">$</span>entry, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+
+check_data =<span class="st"> </span><span class="kw">cbind.data.frame</span>(mu_ij, mu_ij_estimated[<span class="kw">names</span>(mu_ij)])</code></pre>
+<p>Let’s have a look on the relation between the posterior medians and the arithmetic means.
+It goes pretty well!</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">ggplot</span>(check_data, <span class="kw">aes</span>(<span class="dt">x =</span> mu_ij, <span class="dt">y =</span> mu_ij_estimated))
+p <span class="op">+</span><span class="st"> </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+</div>
+</div>
+<div id="get-and-visualize-mean-comparisons-2" class="section level4">
+<h4><span class="header-section-number">3.5.6.6</span> Get and visualize mean comparisons</h4>
+<p>The method to compute mean comparison are explained in section <a href="#mean-comp-check-bayes"><strong>??</strong></a>.</p>
+<div id="get-mean-comparisons-2" class="section level5">
+<h5><span class="header-section-number">3.5.6.6.1</span> Get mean comparisons</h5>
+<p>Get mean comparisons with <code>mean_comparisons</code>.
+The theory behind mean comparisons has been explained in section <a href="#mean-comp"><strong>??</strong></a>.</p>
+<p>Below is an example for <span class="math inline">\(\mu\)</span>, the same can be done for <span class="math inline">\(\beta\)</span>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># out_mean_comparisons_model_bh_intra_location_mu = mean_comparisons(out_check_model_bh_intra_location, parameter = &quot;mu&quot;)</span>
+
+<span class="co"># Get at least X groups for loc-11:2007. It may take some time ...</span>
+<span class="co"># Get at least X groups for loc-11:2007 is done.</span>
+<span class="co"># Get at least X groups for loc-17:2005. It may take some time ...</span>
+<span class="co"># Get at least X groups for loc-17:2005 is done.</span>
+<span class="co"># Get at least X groups for loc-21:2006. It may take some time ...</span>
+<span class="co"># Get at least X groups for loc-21:2006 is done.</span>
+<span class="co"># Get at least X groups for loc-9:2006. It may take some time ...</span>
+<span class="co"># Get at least X groups for loc-9:2006 is done.</span>
+
+<span class="kw">load</span>(<span class="st">&quot;./data_PPBstats/out_mean_comparisons_model_bh_intra_location_mu.RData&quot;</span>) <span class="co"># To save time</span></code></pre>
+<p><code>out_mean_comparisons_model_bh_intra_location_mu</code> is a list of three elements:</p>
+<ul>
+<li><code>data_mean_comparisons</code> a list with as many elements as environment.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">names</span>(out_mean_comparisons_model_bh_intra_location_mu<span class="op">$</span>data_mean_comparisons))</code></pre>
+<pre><code>## [1] &quot;loc-1:2005&quot; &quot;loc-1:2006&quot; &quot;loc-1:2007&quot; &quot;loc-2:2005&quot; &quot;loc-2:2006&quot;
+## [6] &quot;loc-2:2007&quot;</code></pre>
+<p>Each element of the list is composed of two elements:</p>
+<pre><code>- `mean.comparisons`
+
+```r
+head(out_mean_comparisons_model_bh_intra_location_mu$data_mean_comparisons$`loc-1:2005`$mean.comparisons)
+```
+
+```
+##                parameter   median groups nb_group alpha alpha.correction
+## 1  mu[germ-3,loc-1:2005] 38.42457      a       10  0.05        soft.bonf
+## 2  mu[germ-1,loc-1:2005] 41.73724     ab       10  0.05        soft.bonf
+## 3 mu[germ-10,loc-1:2005] 45.91424    abc       10  0.05        soft.bonf
+## 4 mu[germ-18,loc-1:2005] 47.76006   abcd       10  0.05        soft.bonf
+## 5  mu[germ-2,loc-1:2005] 48.10288  abcde       10  0.05        soft.bonf
+## 6 mu[germ-19,loc-1:2005] 49.20361 abcdef       10  0.05        soft.bonf
+##     entry environment location year
+## 1  germ-3  loc-1:2005    loc-1 2005
+## 2  germ-1  loc-1:2005    loc-1 2005
+## 3 germ-10  loc-1:2005    loc-1 2005
+## 4 germ-18  loc-1:2005    loc-1 2005
+## 5  germ-2  loc-1:2005    loc-1 2005
+## 6 germ-19  loc-1:2005    loc-1 2005
+```
+
+- `Mpvalue` : a square matrix with pvalue computed for each pair of parameter.
+
+```r
+out_mean_comparisons_model_bh_intra_location_mu$data_mean_comparisons$`loc-1:2005`$Mpvalue[1:3, 1:3]
+```
+
+```
+##                        mu[germ-3,loc-1:2005] mu[germ-1,loc-1:2005]
+## mu[germ-3,loc-1:2005]                      0               0.17505
+## mu[germ-1,loc-1:2005]                      0               0.00000
+## mu[germ-10,loc-1:2005]                     0               0.00000
+##                        mu[germ-10,loc-1:2005]
+## mu[germ-3,loc-1:2005]                 0.03940
+## mu[germ-1,loc-1:2005]                 0.15185
+## mu[germ-10,loc-1:2005]                0.00000
+```</code></pre>
+<ul>
+<li><code>data_env_with_no_controls</code> a list with as many elements as environment.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(out_mean_comparisons_model_bh_intra_location_mu<span class="op">$</span>data_env_with_no_controls)</code></pre>
+<pre><code>## [1] &quot;loc-25:2005&quot;</code></pre>
+<p>Each list contains mean.comparisons.
+Note there are no groups displayed. Inded, there were no controls on the environment so no model was run.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(out_mean_comparisons_model_bh_intra_location_mu<span class="op">$</span>data_env_with_no_controls<span class="op">$</span><span class="st">`</span><span class="dt">loc-25:2005</span><span class="st">`</span><span class="op">$</span>mean.comparisons)</code></pre>
+<pre><code>##                 entry germplasm environment block X Y   median
+## 1 germ-12,loc-25:2005   germ-12 loc-25:2005     1 4 d 38.02544
+## 2 germ-18,loc-25:2005   germ-18 loc-25:2005     1 5 e 44.49495
+## 3 germ-19,loc-25:2005   germ-19 loc-25:2005     1 6 f 44.46948
+## 4  germ-1,loc-25:2005    germ-1 loc-25:2005     1 3 c 42.32750
+## 5 germ-20,loc-25:2005   germ-20 loc-25:2005     1 7 g 35.77590
+## 6 germ-21,loc-25:2005   germ-21 loc-25:2005     1 8 h 36.59313
+##                 parameter location year
+## 1 mu[germ-12,loc-25:2005]   loc-25 2005
+## 2 mu[germ-18,loc-25:2005]   loc-25 2005
+## 3 mu[germ-19,loc-25:2005]   loc-25 2005
+## 4  mu[germ-1,loc-25:2005]   loc-25 2005
+## 5 mu[germ-20,loc-25:2005]   loc-25 2005
+## 6 mu[germ-21,loc-25:2005]   loc-25 2005</code></pre>
+<ul>
+<li><code>data_env_whose_param_did_not_converge</code> a list with as many elements as environment.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(out_mean_comparisons_model_bh_intra_location_mu<span class="op">$</span>data_env_whose_param_did_not_converge)</code></pre>
+<pre><code>## NULL</code></pre>
+<p>Here it is NULL as all parameters converge.
+Otherwise in each list it is mean.comparisons.
+Note there are no groups displayed. Inded, the model did not well so no mean comparisons were done.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(out_mean_comparisons_model_bh_intra_location_mu<span class="op">$</span>data_env_with_no_controls<span class="op">$</span><span class="st">`</span><span class="dt">loc-5:2005</span><span class="st">`</span><span class="op">$</span>mean.comparisons)</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
+<div id="visualize-mean-comparisons-2" class="section level5">
+<h5><span class="header-section-number">3.5.6.6.2</span> Visualize mean comparisons</h5>
+<p>To see the output, use <code>plot</code>.
+On each plot, the <code>alpha</code> (type one error) value and the alpha correction are displayed.
+<code>alpha = Imp</code> means that no differences could be detected.
+For <code>plot_type = &quot;interaction&quot;</code> and <code>plot_type = &quot;score&quot;</code>, it is displayed under the form: <code>alpha | alpha correction</code>.</p>
+<p>The ggplot are done for each element of the list coming from <code>mean_comparisons</code>.
+For each plot_type, it is a list of three lists each with as many elements as environments.
+For each element of the list, there are as many graphs as needed with <code>nb_parameters_per_plot</code> parameters per graph.</p>
+<div id="barplot-1" class="section level6">
+<h6><span class="header-section-number">3.5.6.6.2.1</span> barplot</h6>
+<pre class="sourceCode r"><code class="sourceCode r">p_barplot_mu =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_model_bh_intra_location_mu, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+<span class="kw">names</span>(p_barplot_mu)</code></pre>
+<pre><code>## [1] &quot;data_mean_comparisons&quot;                
+## [2] &quot;data_env_with_no_controls&quot;            
+## [3] &quot;data_env_whose_param_did_not_converge&quot;</code></pre>
+<p>From <code>data_mean_comparisons</code>, only environments where all MCMC converged are represented.</p>
+<p>Letters are displayed on each bar. Parameters that do not share the same letters are different based on type I error (alpha) and alpha correction.</p>
+<p>The error I (alpha) and the alpha correction are displayed in the title.
+alpha = Imp means that no significant differences coumd be detected.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span>p_barplot_mu<span class="op">$</span>data_mean_comparisons
+
+<span class="kw">head</span>(<span class="kw">names</span>(p))</code></pre>
+<pre><code>## [1] &quot;loc-1:2005&quot; &quot;loc-1:2006&quot; &quot;loc-1:2007&quot; &quot;loc-2:2005&quot; &quot;loc-2:2006&quot;
+## [6] &quot;loc-2:2007&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_env =<span class="st"> </span>p<span class="op">$</span><span class="st">`</span><span class="dt">loc-1:2005</span><span class="st">`</span>
+<span class="kw">names</span>(p_env)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-148-2.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-148-3.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-148-4.png" width="672" /></p>
+<p>For <code>data_env_with_no_controls</code>, only environments where there were no controls are represented.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_barplot_mu<span class="op">$</span>data_env_with_no_controls</code></pre>
+<pre><code>## $`loc-25:2005`
+## $`loc-25:2005`$`1`</code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
+<p>For <code>data_env_whose_param_did_not_converge</code>, only environments where MCMC did not converge are represented.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_barplot_mu<span class="op">$</span>data_env_whose_param_did_not_converge</code></pre>
+<pre><code>## list()</code></pre>
+</div>
+<div id="interaction-1" class="section level6">
+<h6><span class="header-section-number">3.5.6.6.2.2</span> interaction</h6>
+<p>With <code>plot_type = &quot;interaction&quot;</code>, you can display the year effect as well as detect groups.
+One group is represented by one vertical line.
+Germplasms which share the same group are not different.
+Germplasms which do not share the same groupe are different (Section <a href="#mean-comp"><strong>??</strong></a>).</p>
+<p>The ggplot are done for each element of the list coming rom <code>mean_comparisons</code>.</p>
+<p>For each plot_type, it is a list of three elements being lists with as many elements as environment.</p>
+<p>For each element of the list, there are as many graph as needed with <code>nb_parameters_per_plot</code> parameters per graph.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_interaction =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_model_bh_intra_location_mu, <span class="dt">plot_type =</span> <span class="st">&quot;interaction&quot;</span>)
+
+<span class="kw">head</span>(<span class="kw">names</span>(p_interaction<span class="op">$</span>data_mean_comparisons))</code></pre>
+<pre><code>## [1] &quot;loc-1&quot;  &quot;loc-10&quot; &quot;loc-11&quot; &quot;loc-12&quot; &quot;loc-13&quot; &quot;loc-14&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_env =<span class="st"> </span>p_interaction<span class="op">$</span>data_mean_comparisons<span class="op">$</span><span class="st">`</span><span class="dt">loc-1</span><span class="st">`</span>
+<span class="kw">names</span>(p_env)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-151-2.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-151-3.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-151-4.png" width="672" /></p>
+</div>
+</div>
+<div id="score" class="section level5">
+<h5><span class="header-section-number">3.5.6.6.3</span> score</h5>
+<p>For the score, more entries are displayed.
+An high score means that the entry was in a group with an high mean.
+A low socre means that the entry was in a group with an low mean.
+In the legend, the score goes from 1 (first group) to the number of groups of significativity.
+This plot is useful to look at year effects.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p_score =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_model_bh_intra_location_mu, <span class="dt">plot_type =</span> <span class="st">&quot;score&quot;</span>)
+
+<span class="kw">head</span>(<span class="kw">names</span>(p_score))</code></pre>
+<pre><code>## [1] &quot;loc-1&quot;  &quot;loc-10&quot; &quot;loc-11&quot; &quot;loc-12&quot; &quot;loc-13&quot; &quot;loc-14&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_env =<span class="st"> </span>p_score<span class="op">$</span><span class="st">`</span><span class="dt">loc-1</span><span class="st">`</span>
+<span class="kw">names</span>(p_env)</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">1</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">2</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-152-2.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">3</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-152-3.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">p_env<span class="op">$</span><span class="st">`</span><span class="dt">4</span><span class="st">`</span></code></pre>
+<p><img src="PPBstats_book_files/figure-html/unnamed-chunk-152-4.png" width="672" /></p>
+</div>
+</div>
+<div id="apply-the-workflow-to-several-variables-1" class="section level4">
+<h4><span class="header-section-number">3.5.6.7</span> Apply the workflow to several variables</h4>
+<p>If you wish to apply the model_bh_intra_location workflow to several variables, you can use <code>lapply</code> with the following code :</p>
+<pre class="sourceCode r"><code class="sourceCode r">workflow_model_bh_intra_location =<span class="st"> </span><span class="cf">function</span>(x){
+  out_model_bh_intra_location =<span class="st"> </span><span class="kw">model_bh_intra_location</span>(<span class="dt">data =</span> data_model_bh_intra_location, <span class="dt">variable =</span> x, <span class="dt">return.epsilon =</span> <span class="ot">TRUE</span>)
+  
+  out_check_model_bh_intra_location =<span class="st"> </span><span class="kw">check_model</span>(out_model_bh_intra_location)
+  p_out_check_model_bh_intra_location =<span class="st"> </span><span class="kw">plot</span>(out_check_model_bh_intra_location)
+  
+  out_mean_comparisons_model_bh_intra_location_mu =<span class="st"> </span><span class="kw">mean_comparisons</span>(out_check_model_bh_intra_location, <span class="dt">parameter =</span> <span class="st">&quot;mu&quot;</span>)
+  p_barplot_mu =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_model_bh_intra_location_mu, <span class="dt">plot_type =</span> <span class="st">&quot;barplot&quot;</span>)
+  p_interaction =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_model_bh_intra_location_mu, <span class="dt">plot_type =</span> <span class="st">&quot;interaction&quot;</span>)
+  p_score =<span class="st"> </span><span class="kw">plot</span>(out_mean_comparisons_model_bh_intra_location_mu, <span class="dt">plot_type =</span> <span class="st">&quot;score&quot;</span>)
+  
+  out =<span class="st"> </span><span class="kw">list</span>(
+    <span class="st">&quot;out_model_bh_intra_location&quot;</span> =<span class="st"> </span>out_model_bh_intra_location,
+    <span class="st">&quot;out_check_model_bh_intra_location&quot;</span> =<span class="st"> </span>out_check_model_bh_intra_location,
+    <span class="st">&quot;p_out_check_model_bh_intra_location&quot;</span> =<span class="st"> </span>p_out_check_model_bh_intra_location,
+    <span class="st">&quot;out_mean_comparisons_model_bh_intra_location_mu&quot;</span> =<span class="st"> </span>out_mean_comparisons_model_bh_intra_location_mu,
+    <span class="st">&quot;p_barplot_mu&quot;</span> =<span class="st"> </span>p_barplot_mu,
+    <span class="st">&quot;p_interaction&quot;</span> =<span class="st"> </span>p_interaction,
+    <span class="st">&quot;p_score&quot;</span> =<span class="st"> </span>p_score
+    )
+  <span class="kw">return</span>(out)
+}
+
+<span class="co">## Not run because of memory and time issues !</span>
+<span class="co"># vec_variables = c(&quot;y1&quot;, &quot;y2&quot;, &quot;y3&quot;)</span>
+<span class="co">#</span>
+<span class="co"># out = lapply(vec_variables, workflow_model_bh_intra_location)</span>
+<span class="co"># names(out) = vec_variables</span></code></pre>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-desclaux_changes_2008">
+<p>Desclaux, D., J. M. Nolot, Y. Chiffoleau, C. Leclerc, and E. Gozé. 2008. “Changes in the Concept of Genotype X Environment Interactions to Fit Agriculture Diversification and Decentralized Participatory Plant Breeding: Pluridisciplinary Point of View.” <em>Euphytica</em> 163: 533–46.</p>
+</div>
+<div id="ref-plummer_penalized_2008">
+<p>Plummer, M. 2008. “Penalized Loss Functions for Bayesian Model Comparison.” <em>Biostatistics</em> 9 (3): 523–39.</p>
+</div>
+<div id="ref-riviere_hierarchical_2015">
+<p>Rivière, P., J.C. Dawson, I. Goldringer, and O. David. 2015. “Hierarchical Bayesian Modeling for Flexible Experiments in Decentralized Participatory Plant Breeding.” <em>Crop Science</em> 55 (3).</p>
+</div>
+<div id="ref-rodriguez_spatial_2016">
+<p>Rodrı'guez-Álvarez, X.M., M. P. Boer, F. A. van Eeuwijk, and P. H. C. Eilers. 2016. “Spatial Models for Field Trials.” <em>ArXiv E-Prints</em>, July.</p>
+</div>
+<div id="ref-spiegelhalter_bayesian_2002">
+<p>Spiegelhalter, D. J., N. G. Best, B. P. Carlin, and A. Van Der Linde. 2002. “Bayesian Measures of Model Complexity and Fit.” <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 64 (4): 583–639.</p>
+</div>
+<div id="ref-alternative_zystro_2018">
+<p>Zystro, Jared, Micaela Colley, and Julie Dawson. 2018. “Alternative Experimental Designs for Plant Breeding.” In, 87–117. <a href="https://doi.org/10.1002/9781119521358.ch3">https://doi.org/10.1002/9781119521358.ch3</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Note that it is quite different from <span class="citation">Rivière et al. (<a href="#ref-riviere_hierarchical_2015">2015</a>)</span> where the model was written only for two blocks. Here there is no restriction on the number of blocks.<a href="family-1.html#fnref9" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="describe-data-agro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="family-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/priviere/PPBstats/edit/master/305-agro_family_1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["PPBstats_book.pdf", "PPBstats_book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
